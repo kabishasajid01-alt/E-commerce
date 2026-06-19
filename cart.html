@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Responsive E-commerce Header</title>
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="css/cdnbootstrap.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="js/cdnbootstrap.js"></script>
+    <!--font awsom-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+
+</head>
+<body>
+
+    <!-- MAIN HEADER CONTAINER -->
+    <header class="main-header">
+        <div class="container">
+
+            <!-- DESKTOP TOP ROW & MOBILE TOP ROW -->
+            <div class="row align-items-center justify-content-between g-2">
+
+                <!-- Left Identity Block: Hamburger Toggle (Mobile Only) & Brand Title -->
+                <div class="col-auto d-flex align-items-center gap-2">
+                    <!-- Mobile Hamburger Menu Toggle -->
+                    <button class="btn btn-link text-dark p-0 d-md-none me-1" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#mobileNavOffcanvas" aria-controls="mobileNavOffcanvas">
+                        <i class="bi bi-list fs-2"></i>
+                    </button>
+
+                    <a href="#" class="brand-logo">
+                        <!-- Custom Vector/Icon Mimicking Image Logo -->
+                        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="24" height="24" rx="6" fill="#0d6efd" />
+                            <path
+                                d="M16 9h-1c0-1.66-1.34-3-3-3S9 7.34 9 9H8c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-6c0-1.1-.9-2-2-2zm-4-1c1.1 0 2 .9 2 2H10c0-1.1.9-2 2-2zm4 9H8v-5h8v5z"
+                                fill="white" />
+                        </svg>
+                        <span>Brand</span>
+                    </a>
+                </div>
+
+                <!-- Center Block: Desktop Blue Search bar component (Hidden on Mobile) -->
+                <div class="col-12 col-md-5 col-lg-6 d-none d-md-block">
+                    <div class="input-group search-group">
+                        <input type="text" class="form-control search-input" placeholder="Search" aria-label="Search">
+                        <select class="form-select category-select">
+                            <option selected>All category</option>
+                            <option value="1">Gadgets</option>
+                            <option value="2">Clothes</option>
+                            <option value="3">Accessories</option>
+                        </select>
+                        <button class="btn btn-primary search-btn" type="button">Search</button>
+                    </div>
+                </div>
+
+                <!-- Right Block: Desktop Actions Panel vs Mobile Utility Row Layout -->
+                <div class="col-auto">
+                    <!-- Desktop Actions Set (Hidden on Mobile) -->
+                    <div class="d-none d-md-flex align-items-center gap-4">
+                        <a href="#" class="user-action-item">
+                            <i class="bi bi-person"></i>
+                            <span>Profile</span>
+                        </a>
+                        <a href="#" class="user-action-item">
+                            <i class="bi bi-chat-left-text"></i>
+                            <span>Message</span>
+                        </a>
+                        <a href="#" class="user-action-item">
+                            <i class="bi bi-heart"></i>
+                            <span>Orders</span>
+                        </a>
+                        <a href="#" class="user-action-item">
+                            <i class="bi bi-cart3"></i>
+                            <span>My cart</span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile Navigation Icons (Displayed precisely as in image_058346.png) -->
+                    <div class="d-flex d-md-none align-items-center gap-3">
+                        <a href="#" class="text-dark fs-4"><i class="bi bi-cart3"></i></a>
+                        <a href="#" class="text-dark fs-4"><i class="bi bi-person"></i></a>
+                    </div>
+                </div>
+
+            </div> <!-- /End Top Row -->
+
+            
+ 
+            <div class="d-block d-lg-none d-md-none">
+                <div class="category-container" id="categories">
+
+                <div class="category active">All category</div>
+                <div class="category">Gadgets</div>
+                <div class="category">Clothes</div>
+                <div class="category">Accessories</div>
+                <div class="category">Shoes</div>
+                <div class="category">Books</div>
+                <div class="category">Sports</div>
+
+            </div>
+            </div>
+
+        </div>
+    </header>
+
+<div class="container my-5">
+    <h3 class="cart-main-title mb-4">My cart (3)</h3>
+
+    <div class="row g-4">
+        <div class="col-12 col-lg-9">
+            <div class="cart-items-wrapper">
+                <div id="cartItemsContainer">
+                    </div>
+
+                <div class="cart-footer-actions d-flex justify-content-between align-items-center p-3">
+                    <button class="btn btn-primary px-3"><i class="bi bi-arrow-left me-2"></i>Back to shop</button>
+                    <button class="btn btn-outline-primary px-3" id="clearAllCartBtn">Remove all</button>
+                </div>
+            </div>
+
+            <div class="row mt-4 d-none d-md-flex text-muted perks-row">
+                <div class="col-md-4 d-flex align-items-center gap-3">
+                    <div class="perk-icon-box"><i class="bi bi-lock-fill"></i></div>
+                    <div>
+                        <div class="perk-title">Secure payment</div>
+                        <small>Have you ever finally just</small>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex align-items-center gap-3">
+                    <div class="perk-icon-box"><i class="bi bi-chat-dots-fill"></i></div>
+                    <div>
+                        <div class="perk-title">Customer support</div>
+                        <small>Have you ever finally just</small>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex align-items-center gap-3">
+                    <div class="perk-icon-box"><i class="bi bi-truck"></i></div>
+                    <div>
+                        <div class="perk-title">Free delivery</div>
+                        <small>Have you ever finally just</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-3">
+            <div class="coupon-card mb-3 p-3">
+                <label class="form-label text-muted small mb-2">Have a coupon?</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Add coupon">
+                    <button class="btn btn-outline-primary" type="button">Apply</button>
+                </div>
+            </div>
+
+            <div class="summary-card p-3">
+                <div class="d-flex justify-content-between mb-2">
+                    <span class="text-muted">Subtotal:</span>
+                    <span class="fw-semibold text-dark" id="summarySubtotal">$0.00</span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                    <span class="text-muted">Discount:</span>
+                    <span class="text-danger" id="summaryDiscount">-$60.00</span>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                    <span class="text-muted">Tax:</span>
+                    <span class="text-success" id="summaryTax">+$14.00</span>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <span class="fw-bold fs-5">Total:</span>
+                    <span class="fw-bold fs-4 text-dark" id="summaryTotal">$0.00</span>
+                </div>
+
+                <button class="btn btn-success w-100 btn-checkout py-2 mb-3">Checkout</button>
+                
+                <div class="d-flex justify-content-center gap-2 flex-wrap">
+                    <span class="badge bg-light text-dark border p-2"><i class="bi bi-credit-card-2-front text-primary"></i> Visa</span>
+                    <span class="badge bg-light text-dark border p-2"><i class="bi bi-credit-card text-danger"></i> Master</span>
+                    <span class="badge bg-light text-dark border p-2"><i class="bi bi-paypal text-info"></i> Paypal</span>
+                    <span class="badge bg-light text-dark border p-2"><i class="bi bi-wallet2 text-warning"></i> Amex</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/cart.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

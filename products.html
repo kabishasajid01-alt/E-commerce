@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products page</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="css/cdnbootstrap.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="js/cdnbootstrap.js"></script>
+    <!--font awsom-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- MAIN HEADER CONTAINER -->
+    <header class="main-header">
+        <div class="container">
+
+            <!-- DESKTOP TOP ROW & MOBILE TOP ROW -->
+            <div class="row align-items-center justify-content-between g-2">
+
+                <!-- Left Identity Block: Hamburger Toggle (Mobile Only) & Brand Title -->
+                <div class="col-auto d-flex align-items-center gap-2">
+                    <!-- Mobile Hamburger Menu Toggle -->
+                    <button class="btn btn-link text-dark p-0 d-md-none me-1" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#mobileNavOffcanvas" aria-controls="mobileNavOffcanvas">
+                        <i class="bi bi-list fs-2"></i>
+                    </button>
+
+                    <a href="#" class="brand-logo">
+                        <!-- Custom Vector/Icon Mimicking Image Logo -->
+                        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="24" height="24" rx="6" fill="#0d6efd" />
+                            <path
+                                d="M16 9h-1c0-1.66-1.34-3-3-3S9 7.34 9 9H8c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-6c0-1.1-.9-2-2-2zm-4-1c1.1 0 2 .9 2 2H10c0-1.1.9-2 2-2zm4 9H8v-5h8v5z"
+                                fill="white" />
+                        </svg>
+                        <span>Brand</span>
+                    </a>
+                </div>
+
+                <!-- Center Block: Desktop Blue Search bar component (Hidden on Mobile) -->
+                <div class="col-12 col-md-5 col-lg-6 d-none d-md-block">
+                    <div class="input-group search-group">
+                        <input type="text" class="form-control search-input" placeholder="Search" aria-label="Search">
+                        <select class="form-select category-select">
+                            <option selected>All category</option>
+                            <option value="1">Gadgets</option>
+                            <option value="2">Clothes</option>
+                            <option value="3">Accessories</option>
+                        </select>
+                        <button class="btn btn-primary search-btn" type="button">Search</button>
+                    </div>
+                </div>
+
+                <!-- Right Block: Desktop Actions Panel vs Mobile Utility Row Layout -->
+                <div class="col-auto">
+                    <!-- Desktop Actions Set (Hidden on Mobile) -->
+                    <div class="d-none d-md-flex align-items-center gap-4">
+                        <a href="#" class="user-action-item">
+                            <i class="bi bi-person"></i>
+                            <span>Profile</span>
+                        </a>
+                        <a href="#" class="user-action-item">
+                            <i class="bi bi-chat-left-text"></i>
+                            <span>Message</span>
+                        </a>
+                        <a href="#" class="user-action-item">
+                            <i class="bi bi-heart"></i>
+                            <span>Orders</span>
+                        </a>
+                        <a href="#" class="user-action-item">
+                            <i class="bi bi-cart3"></i>
+                            <span>My cart</span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile Navigation Icons (Displayed precisely as in image_058346.png) -->
+                    <div class="d-flex d-md-none align-items-center gap-3">
+                        <a href="#" class="text-dark fs-4"><i class="bi bi-cart3"></i></a>
+                        <a href="#" class="text-dark fs-4"><i class="bi bi-person"></i></a>
+                    </div>
+                </div>
+
+            </div> <!-- /End Top Row -->
+
+            <!-- MOBILE SEARCH & CHIPS BAR (Only visible on Mobile viewports) -->
+            <div class="row mt-2 d-md-none">
+                <div class="col-12">
+                    <!-- Mobile Search Bar input box matching image_058346.png -->
+                    <div class="mobile-search-container">
+                        <i class="bi bi-search"></i>
+                        <input type="text" class="form-control mobile-search-input" placeholder="Search">
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="d-block d-lg-none d-md-none">
+                <div class="category-container" id="categories">
+
+                <div class="category active">All category</div>
+                <div class="category">Gadgets</div>
+                <div class="category">Clothes</div>
+                <div class="category">Accessories</div>
+                <div class="category">Shoes</div>
+                <div class="category">Books</div>
+                <div class="category">Sports</div>
+
+            </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- DESKTOP SUB INTERACTION NAVBAR (Hidden completely on mobile viewports) -->
+    <nav class="sub-navbar d-none d-md-block">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+
+                <!-- Left Nav Links Section with working Bootstrap Dropdowns -->
+                <div class="d-flex align-items-center gap-4">
+                    <a href="#" class="sub-nav-link d-flex align-items-center gap-2">
+                        <i class="bi bi-list fs-5"></i> All category
+                    </a>
+                    <a href="#" class="sub-nav-link">Hot offers</a>
+                    <a href="#" class="sub-nav-link">Gift boxes</a>
+                    <a href="#" class="sub-nav-link">Projects</a>
+                    <a href="#" class="sub-nav-link">Menu item</a>
+
+                    <!-- Fixed Interactive Help Dropdown Menu -->
+                    <div class="dropdown">
+                        <button class="sub-nav-link dropdown-toggle" type="button" id="helpDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Help <i class="bi bi-chevron-down small ms-1 text-muted"></i>
+                        </button>
+                        <ul class="dropdown-menu shadow-sm mt-2" aria-labelledby="helpDropdown">
+                            <li><a class="dropdown-item" href="#">FAQ Support</a></li>
+                            <li><a class="dropdown-item" href="#">Contact Center</a></li>
+                            <li><a class="dropdown-item" href="#">Open Dispute</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Localization Settings Dropdowns Section -->
+                <div class="d-flex align-items-center gap-4">
+                    <!-- Fixed Currency/Language Dropdown Menu -->
+                    <div class="dropdown">
+                        <button class="sub-nav-link dropdown-toggle" type="button" id="langDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            English, USD <i class="bi bi-chevron-down small ms-1 text-muted"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2" aria-labelledby="langDropdown">
+                            <li><a class="dropdown-item" href="#">English, USD</a></li>
+                            <li><a class="dropdown-item" href="#">Deutsch, EUR</a></li>
+                            <li><a class="dropdown-item" href="#">Español, EUR</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Fixed Shipping Region Destination Dropdown Menu -->
+                    <div class="dropdown">
+                        <button class="sub-nav-link dropdown-toggle d-flex align-items-center" type="button"
+                            id="shipDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ship to <span class="flag-icon ms-2"></span> <i
+                                class="bi bi-chevron-down small ms-1 text-muted"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2" aria-labelledby="shipDropdown">
+                            <li><a class="dropdown-item" href="#"><span class="flag-icon me-2"></span> Germany (DE)</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#">United States (US)</a></li>
+                            <li><a class="dropdown-item" href="#">United Kingdom (UK)</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </nav>
+
+    <!-- MOBILE NAVIGATION SIDEBAR OFFCANVAS (Triggered via mobile hamburger click) -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileNavOffcanvas"
+        aria-labelledby="mobileNavOffcanvasLabel">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title text-primary fw-bold" id="mobileNavOffcanvasLabel">Navigation Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0">
+            <div class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action py-3"><i class="bi bi-list me-3"></i>All
+                    category</a>
+                <a href="#" class="list-group-item list-group-item-action py-3"><i class="bi bi-percent me-3"></i>Hot
+                    offers</a>
+                <a href="#" class="list-group-item list-group-item-action py-3"><i class="bi bi-box-seam me-3"></i>Gift
+                    boxes</a>
+                <a href="#" class="list-group-item list-group-item-action py-3"><i
+                        class="bi bi-folder me-3"></i>Projects</a>
+                <a href="#" class="list-group-item list-group-item-action py-3"><i
+                        class="bi bi-link-45deg me-3"></i>Menu item</a>
+                <a href="#" class="list-group-item list-group-item-action py-3"><i
+                        class="bi bi-question-circle me-3"></i>Help Center</a>
+            </div>
+        </div>
+
+    </div>
+
+
+     
+    
+    <!-- subscribe -->
+
+    <div class="container-fluid bgrond">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="subscribe">
+                    <h5>Subscribe on our newsletter</h5>
+                    <p>Get daily news on upcoming offers from many suppliers all over the world</p>
+
+                    <div class="foem-sub">
+                        <form action="#">
+                            <div class="input-wrapper">
+                                <i class="fa-regular fa-envelope input-icon"></i>
+                                <input type="email" name="email" placeholder="Email">
+                            </div>
+                            <button type="submit" class="botn">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- footer -->
+
+    <div class="bg-color bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 footeerr">
+
+                    <div class="brnd">
+                        <img src="images/brand/logo-colored.png" alt="logo">
+                        <p>Best information about the company gies here but now lorem ipsum is</p>
+                        <div class="media">
+                            <div class="media-icone">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </div>
+
+                            <div class="media-icone" style="padding: 5px 12px;">
+                                <i class="fa-brands fa-twitter"></i>
+                            </div>
+
+                            <div class="media-icone" style="padding: 5px 12px;">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </div>
+
+                            <div class="media-icone" style="padding: 5px 12px;">
+                                <i class="fa-brands fa-instagram"></i>
+                            </div>
+
+                            <div class="media-icone" style="padding: 5px 9px;">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-1 footeerr" style="padding-left: 10px;">
+                    <div class="foot-about">
+                        <h3>About</h3>
+                        <p>About Us</p>
+                        <p>Find store</p>
+                        <p>Categories</p>
+                        <p>Blogs</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 footeerr footeerr-sp">
+                    <div class="foot-about">
+                        <h3>Partnership</h3>
+                        <p>About Us</p>
+                        <p>Find store</p>
+                        <p>Categories</p>
+                        <p>Blogs</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 footeerr">
+                    <div class="foot-about">
+                        <h3>Information</h3>
+                        <p>Help Center</p>
+                        <p>Money Refund</p>
+                        <p>Shipping</p>
+                        <p>Contact us</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 footeerr">
+                    <div class="foot-about">
+                        <h3>For users</h3>
+                        <p>Login</p>
+                        <p>Register</p>
+                        <p>Settings</p>
+                        <p>My Orders</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 footeerr">
+                    <div class="foot-about">
+                        <h3>Get App</h3>
+                        <img src="images/app/Group.png" alt="img">
+                        <img src="images/app/market-button.png" alt="img">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="footer-bottom-content">
+            <!-- Left Side: Copyright Text -->
+            <div class="copyright-text">
+                &copy; 2026 Ecommerce.
+            </div>
+
+            <!-- Right Side: Country/Language Dropdown Menu -->
+            <div class="dropdown language-dropdown">
+                <button class="dropdown-toggle" type="button" id="footerLangDropdown" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="images/flags/US@2x.png" alt="us"> English <i
+                        class="fa-solid fa-chevron-up arrow-icon"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="footerLangDropdown">
+                    <li>
+                        <a class="dropdown-item active" href="#">
+                            <img src="images/flags/AE@2x.png" alt="us"> Arabic
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item active" href="#">
+                            <img src="images/flags/CN@2x.png" alt="us"> Chines
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item active" href="#">
+                            <img src="images/flags/DK@2x.png" alt="us"> Danish
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item active" href="#">
+                            <img src="images/flags/FR@2x.png" alt="us"> Franch
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item active" href="#">
+                            <img src="images/flags/GB@2x.png" alt="us"> English
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item active" href="#">
+                            <img src="images/flags/icon.png" alt="us"> Austrialian
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item active" href="#">
+                            <img src="images/flags/IT@2x.png" alt="us"> Italian
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item active" href="#">
+                            <img src="images/flags/RU@2x.png" alt="us"> Russhian
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

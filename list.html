@@ -211,7 +211,7 @@
     <div class="container">
         <div class="row">
 
-            <div class="breadcrumb py-4 ms-3">
+            <div class="breadcrumb py-4 ms-3 d-none d-lg-block">
                 <a href="#">Home</a>
                 <span>›</span>
 
@@ -416,34 +416,61 @@
                 </div>
             </div>
 
+            <div class="top-filter-bar d-block d-lg-none">
+                <div class="item-count">
+                    12,819 items in <strong>Mobile accessory</strong>
+                </div>
+                <div class="right-controls">
+                    <label class="verified-checkbox">
+                        <input type="checkbox" class="form-check-input m-0"> Verified only
+                    </label>
+                    <select class="sort-select">
+                        <option>Featured</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                    </select>
+
+                    <div class="view-btn-group">
+                        <button class="view-btn active" id="btnGrid" onclick="switchView('grid')" title="Grid View">
+                            <i class="fa-solid fa-table-cells-large"></i>
+                        </button>
+                        <button class="view-btn" id="btnList" onclick="switchView('list')" title="List View">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-lg-9 col-12">
 
-                <div class="containe">
+                <div class="container-fluid">
                     <div class="main-container">
 
-                        <div class="top-filter-bar">
-                            <div class="item-count">
-                                12,819 items in <strong>Mobile accessory</strong>
-                            </div>
-                            <div class="right-controls">
-                                <label class="verified-checkbox">
-                                    <input type="checkbox" class="form-check-input m-0"> Verified only
-                                </label>
-                                <select class="sort-select">
-                                    <option>Featured</option>
-                                    <option>Price: Low to High</option>
-                                    <option>Price: High to Low</option>
-                                </select>
+                        <div class="d-none d-lg-block">
+                            <div class="top-filter-bar">
+                                <div class="item-count">
+                                    12,819 items in <strong>Mobile accessory</strong>
+                                </div>
+                                <div class="right-controls">
+                                    <label class="verified-checkbox">
+                                        <input type="checkbox" class="form-check-input m-0"> Verified only
+                                    </label>
+                                    <select class="sort-select">
+                                        <option>Featured</option>
+                                        <option>Price: Low to High</option>
+                                        <option>Price: High to Low</option>
+                                    </select>
 
-                                <div class="view-btn-group">
-                                    <button class="view-btn active" id="btnGrid" onclick="switchView('grid')"
-                                        title="Grid View">
-                                        <i class="fa-solid fa-table-cells-large"></i>
-                                    </button>
-                                    <button class="view-btn" id="btnList" onclick="switchView('list')"
-                                        title="List View">
-                                        <i class="fa-solid fa-bars"></i>
-                                    </button>
+                                    <div class="view-btn-group">
+                                        <button class="view-btn active" id="btnGrid" onclick="switchView('grid')"
+                                            title="Grid View">
+                                            <i class="fa-solid fa-table-cells-large"></i>
+                                        </button>
+                                        <button class="view-btn" id="btnList" onclick="switchView('list')"
+                                            title="List View">
+                                            <i class="fa-solid fa-bars"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -465,9 +492,9 @@
                             <div>
                                 Show
                                 <select class="page-select" id="itemsPerPage" onchange="changeItemsPerPage()">
-                                    <option value="5">5</option>
-                                    <option value="10" selected>10</option>
-                                    <option value="15">15</option>
+                                    <option value="6">6</option>
+                                    <option value="9" selected>9</option>
+                                    <option value="12">12</option>
                                 </select>
                             </div>
                             <ul class="custom-pagination" id="paginationNav">

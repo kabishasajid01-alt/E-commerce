@@ -1,227 +1,276 @@
-// ==========================================================================
-// 1. PRODUCTS DATABASE ARRAY
-// ==========================================================================
-const mockupProductsDatabase = [
-    {
-        title: "Canon Camera EOS 2000, Black 10x zoom",
-        price: "998.00",
-        oldPrice: "1128.00",
-        rating: "7.5",
-        orders: "154",
-        hasFreeShipping: true,
-        desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-        imgUrl: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400"
-    },
-    {
-        title: "GoPro HERO6 4K Action Camera - Black Edition",
-        price: "799.00",
-        oldPrice: null,
-        rating: "4.8",
-        orders: "89",
-        hasFreeShipping: true,
-        desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.",
-        imgUrl: "https://images.unsplash.com/photo-1565538810844-1e119de867c2?w=400"
-    },
-    {
-        title: "GoPro HERO6 4K Action Camera - Alternate Pro Grip",
-        price: "895.00",
-        oldPrice: "999.00",
-        rating: "4.5",
-        orders: "120",
-        hasFreeShipping: false,
-        desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
-        imgUrl: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400"
-    },
-    {
-        title: "Premium Slim Performance Laptop 15.6-inch Gray",
-        price: "1299.00",
-        oldPrice: "1450.00",
-        rating: "4.9",
-        orders: "240",
-        hasFreeShipping: true,
-        desc: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.",
-        imgUrl: "https://images.unsplash.com/photo-1496181130204-755241524eab?w=400"
-    },
-    {
-        title: "Smart Watch Silver Metallic Luxury Edition V2",
-        price: "298.00",
-        oldPrice: "349.00",
-        rating: "4.3",
-        orders: "312",
-        hasFreeShipping: true,
-        desc: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas.",
-        imgUrl: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400"
-    },
-    {
-        title: "High-Fidelity Over-Ear Wireless Headphones ANC",
-        price: "198.00",
-        oldPrice: null,
-        rating: "4.6",
-        orders: "415",
-        hasFreeShipping: true,
-        desc: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi.",
-        imgUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400"
-    },
-    {
-        title: "Ultra Wide-Angle Mirrorless Premium Lens",
-        price: "450.00",
-        oldPrice: "520.00",
-        rating: "4.7",
-        orders: "67",
-        hasFreeShipping: false,
-        desc: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.",
-        imgUrl: "https://images.unsplash.com/photo-1617005082133-548c4dd27f35?w=400"
+let activeFilters = new Set();
+
+// 1. Checkbox state changes
+function handleCheckboxChange(checkbox) {
+    if (checkbox.checked) {
+        activeFilters.add(checkbox.value);
+    } else {
+        activeFilters.delete(checkbox.value);
     }
+    renderBadges();
+}
+
+// 2. Radio buttons condition handling
+function handleRadioChange(radio) {
+    // Remove previous condition values if any
+    const conditions = ['Any', 'Refurbished', 'Brand new', 'Old items'];
+    conditions.forEach(cond => activeFilters.delete(cond));
+
+    if (radio.value !== 'Any') { // Image target doesn't show badge for 'Any'
+        activeFilters.add(radio.value);
+    }
+    renderBadges();
+}
+
+// 3. Category link toggle
+function toggleLinkBadge(element, value) {
+    element.classList.toggle('active');
+    if (element.classList.contains('active')) {
+        activeFilters.add(value);
+    } else {
+        activeFilters.delete(value);
+    }
+    renderBadges();
+}
+
+// 4. Range slider connector
+function updatePriceInputs(val) {
+    document.getElementById('maxPrice').value = val;
+}
+
+function applyPriceFilter() {
+    let min = document.getElementById('minPrice').value;
+    let max = document.getElementById('maxPrice').value;
+    let priceString = `$${min}-$${max}`;
+
+    // Remove existing price badges
+    activeFilters.forEach(item => {
+        if (item.includes('$')) activeFilters.delete(item);
+    });
+
+    activeFilters.add(priceString);
+    renderBadges();
+}
+
+// 5. Render Badges to UI (Matches Image 2 format)
+function renderBadges() {
+    const container = document.getElementById('badgesContainer');
+    const clearBtn = document.getElementById('clearAllBtn');
+
+    // Clear all except the Clear Button
+    container.innerHTML = '';
+
+    if (activeFilters.size > 0) {
+        container.style.display = 'flex';
+
+        activeFilters.forEach(filter => {
+            const badge = document.createElement('div');
+            badge.className = 'filter-badge';
+            badge.innerHTML = `${filter} <button class="btn-close-badge" onclick="removeSingleFilter('${filter}')"><i class="fa-solid fa-xmark"></i></button>`;
+            container.appendChild(badge);
+        });
+
+        // Re-append clear all button at the end
+        container.appendChild(clearBtn);
+    } else {
+        container.style.display = 'none';
+    }
+}
+
+// 6. Remove individual filter item
+function removeSingleFilter(value) {
+    activeFilters.delete(value);
+
+    // Uncheck matching checkboxes
+    const checkboxes = document.querySelectorAll('.filter-checkbox');
+    checkboxes.forEach(cb => {
+        if (cb.value === value) cb.checked = false;
+    });
+
+    // Reset radio buttons if applicable
+    const radios = document.querySelectorAll('.filter-radio');
+    radios.forEach(rb => {
+        if (rb.value === value) document.getElementById('condAny').checked = true;
+    });
+
+    // Deactivate Category links
+    const links = document.querySelectorAll('.filter-link');
+    links.forEach(lnk => {
+        if (lnk.innerText === value) lnk.classList.remove('active');
+    });
+
+    renderBadges();
+}
+
+// 7. Clear all reset function
+function clearAllFilters() {
+    activeFilters.clear();
+
+    // Reset inputs
+    document.querySelectorAll('.filter-checkbox').forEach(cb => cb.checked = false);
+    document.querySelectorAll('.filter-radio').forEach(rb => rb.checked = false);
+    document.getElementById('condAny').checked = true;
+    document.querySelectorAll('.filter-link').forEach(lnk => lnk.classList.remove('active'));
+
+    renderBadges();
+}
+
+// pagination
+
+// 1. Mock Database Structure (Images match perfectly across categories)
+const database = [
+    { title: "Canon Camera EOS 200D, Black 18-55mm", price: "$998.00", oldPrice: "$1128.00", rating: 4.5, orders: "154 orders", shipping: "Free Shipping", img: "images/tech/6.png", desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", link: "product-detail.html", },
+    { title: "GoPro HERO6 4K Action Camera - Black", price: "$895.50", oldPrice: "$1099.00", rating: 4, orders: "154 orders", shipping: "Free Shipping", img: "images/tech/8.png", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit." , link: "product-detail.html"},
+    { title: "GoPro HERO6 4K Action Camera - Black", price: "$89.50", oldPrice: "$109.00", rating: 3.5, orders: "154 orders", shipping: "", img: "images/tech/image 23.png", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit." , link: "product-detail.html"},
+    { title: "GoPro HERO6 4K Action Camera - Black", price: "$990.00", oldPrice: "", rating: 4, orders: "154 orders", shipping: "Free Shipping", img: "images/tech/image 29.png", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit." , link: "product-detail.html" },
+    { title: "GoPro HERO6 4K Action Camera - Black", price: "$99.50", oldPrice: "$159.00", rating: 4.5, orders: "75 orders", shipping: "Free Shipping", img: "images/tech/image 32.png", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." , link: "product-detail.html" },
+    { title: "GoPro HERO6 4K Action Camera - Black", price: "$199.50", oldPrice: "$259.00", rating: 5, orders: "25 orders", shipping: "", img: "images/tech/image 34.png", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." , link: "product-detail.html"},
+    { title: "GoPro HERO6 4K Action Camera - Premium", price: "$299.00", oldPrice: "", rating: 4, orders: "190 orders", shipping: "Free Shipping", img: "images/tech/image 85.png", desc: "Premium ultra clear action lens design perfect for extreme sports and outdoor recording." , link: "product-detail.html"},
+    { title: "Smart Sound Over-Ear Headphones White", price: "$89.50", oldPrice: "$120.00", rating: 3, orders: "320 orders", shipping: "Free Shipping", img: "images/tech/image 86.png", desc: "Noise cancelling wireless bluetooth connectivity with extreme depth sound buffers." , link: "product-detail.html"},
+    { title: "Leather Classic Men's Minimalist Wallet", price: "$32.00", oldPrice: "$45.00", rating: 4.5, orders: "450 orders", shipping: "", img: "images/cloths/2 1.png", desc: "Genuine processed structure hide leather with double layer compartment protection." , link: "product-detail.html"},
+    { title: "Canon Camera EOS 200D, Black 18-55mm", price: "$998.00", oldPrice: "$1128.00", rating: 4.5, orders: "154 orders", shipping: "Free Shipping", img: "images/cloths/bitmap (2).png", desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." , link: "product-detail.html"},
+    { title: "GoPro HERO6 4K Action Camera - Black", price: "$895.50", oldPrice: "$1099.00", rating: 4, orders: "154 orders", shipping: "Free Shipping", img: "images/cloths/bitmap.png", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit." , link: "product-detail.html"},
+    { title: "GoPro HERO6 4K Action Camera - Black", price: "$89.50", oldPrice: "$109.00", rating: 3.5, orders: "154 orders", shipping: "", img: "images/cloths/image 24.png", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit." , link: "product-detail.html"},
+    { title: "GoPro HERO6 4K Action Camera - Black", price: "$990.00", oldPrice: "", rating: 4, orders: "154 orders", shipping: "Free Shipping", img: "images/cloths/image 26.png", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit." , link: "product-detail.html" },
+    { title: "GoPro HERO6 4K Action Camera - Black", price: "$99.50", oldPrice: "$159.00", rating: 4.5, orders: "75 orders", shipping: "Free Shipping", img: "images/cloths/image 30.png", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." , link: "product-detail.html"},
+    { title: "GoPro HERO6 4K Action Camera - Black", price: "$199.50", oldPrice: "$259.00", rating: 5, orders: "25 orders", shipping: "", img: "images/cloths/image 34.png", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." , link: "product-detail.html"},
+    { title: "GoPro HERO6 4K Action Camera - Premium", price: "$299.00", oldPrice: "", rating: 4, orders: "190 orders", shipping: "Free Shipping", img: "images/interior/1.png", desc: "Premium ultra clear action lens design perfect for extreme sports and outdoor recording." , link: "product-detail.html"},
+    { title: "Smart Sound Over-Ear Headphones White", price: "$89.50", oldPrice: "$120.00", rating: 3, orders: "320 orders", shipping: "Free Shipping", img: "images/interior/3.png", desc: "Noise cancelling wireless bluetooth connectivity with extreme depth sound buffers." , link: "product-detail.html"},
+    { title: "Leather Classic Men's Minimalist Wallet", price: "$32.00", oldPrice: "$45.00", rating: 4.5, orders: "450 orders", shipping: "", img: "images/interior/6.png", desc: "Genuine processed structure hide leather with double layer compartment protection." , link: "product-detail.html"},
+    { title: "Canon Camera EOS 200D, Black 18-55mm", price: "$998.00", oldPrice: "$1128.00", rating: 4.5, orders: "154 orders", shipping: "Free Shipping", img: "images/interior/7.png", desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." , link: "product-detail.html"},
+    { title: "GoPro HERO6 4K Action Camera - Black", price: "$895.50", oldPrice: "$1099.00", rating: 4, orders: "154 orders", shipping: "Free Shipping", img: "images/interior/8.png", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit." , link: "product-detail.html"},
+    { title: "GoPro HERO6 4K Action Camera - Black", price: "$89.50", oldPrice: "$109.00", rating: 3.5, orders: "154 orders", shipping: "", img: "images/interior/9.png", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit." , link: "product-detail.html"},
+    { title: "GoPro HERO6 4K Action Camera - Black", price: "$990.00", oldPrice: "", rating: 4, orders: "154 orders", shipping: "Free Shipping", img: "images/interior/image 89.png", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit." , link: "product-detail.html"},
+    { title: "GoPro HERO6 4K Action Camera - Black", price: "$99.50", oldPrice: "$159.00", rating: 4.5, orders: "75 orders", shipping: "Free Shipping", img: "images/interior/image 93.png", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." , link: "product-detail.html"},
+    { title: "GoPro HERO6 4K Action Camera - Black", price: "$199.50", oldPrice: "$259.00", rating: 5, orders: "25 orders", shipping: "", img: "images/tech/image 34.png", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." , link: "product-detail.html"},
+    { title: "GoPro HERO6 4K Action Camera - Premium", price: "$299.00", oldPrice: "", rating: 4, orders: "190 orders", shipping: "Free Shipping", img: "images/tech/image 85.png", desc: "Premium ultra clear action lens design perfect for extreme sports and outdoor recording." , link: "product-detail.html"},
+    { title: "Smart Sound Over-Ear Headphones White", price: "$89.50", oldPrice: "$120.00", rating: 3, orders: "320 orders", shipping: "Free Shipping", img: "images/tech/image 86.png", desc: "Noise cancelling wireless bluetooth connectivity with extreme depth sound buffers.",  link: "product-detail.html" },
+    { title: "Leather Classic Men's Minimalist Wallet", price: "$32.00", oldPrice: "$45.00", rating: 4.5, orders: "450 orders", shipping: "", img: "images/cloths/2 1.png", desc: "Genuine processed structure hide leather with double layer compartment protection." , link: "product-detail.html"}
 ];
 
-// App Monitor States
+let currentView = 'grid'; // Base initialization tracker
 let currentPage = 1;
-let itemsPerPage = 5; // Default fallback value
+let itemsPerPage = 9;
 
-// HTML Elements Initialization wrap inside secure loader block
-document.addEventListener("DOMContentLoaded", () => {
-    
-    // DOM Elements Bindings
-    const dynamicProductsList = document.getElementById('dynamicProductsList');
-    const paginationNav = document.getElementById('paginationNav');
-    const itemsPerPageSelect = document.getElementById('itemsPerPageSelect');
-    const totalItemsCounter = document.getElementById('totalItemsCounter');
+// 2. Main View Switcher Logic
+function switchView(viewType) {
+    currentView = viewType;
+    const container = document.getElementById('productContainer');
+    const btnGrid = document.getElementById('btnGrid');
+    const btnList = document.getElementById('btnList');
 
-    // Real dynamic synchronization configuration
-    if (itemsPerPageSelect) {
-        itemsPerPage = parseInt(itemsPerPageSelect.value);
+    if (viewType === 'grid') {
+        container.className = "product-wrapper grid-view";
+        btnGrid.classList.add('active');
+        btnList.classList.remove('active');
+    } else {
+        container.className = "product-wrapper list-view";
+        btnList.classList.add('active');
+        btnGrid.classList.remove('active');
     }
+    renderProducts(); // Refresh architecture layout instantly
+}
 
-    // ==========================================================================
-    // 2. CORE RENDERING ENGINE
-    // ==========================================================================
-    function renderActivePageData() {
-        if (!dynamicProductsList) return;
-        dynamicProductsList.innerHTML = '';
-        
-        if (totalItemsCounter) {
-            totalItemsCounter.innerText = `${mockupProductsDatabase.length} items found in Mobile accessory`;
+// Helper to generate precise stars
+function generateStarsHTML(rating) {
+    let starsHTML = '';
+    for (let i = 1; i <= 5; i++) {
+        if (i <= Math.floor(rating)) {
+            starsHTML += '<i class="fa-solid fa-star"></i>';
+        } else if (i - 0.5 === rating) {
+            starsHTML += '<i class="fa-solid fa-star-half-stroke"></i>';
+        } else {
+            starsHTML += '<i class="fa-regular fa-star" style="color:#e4e7e9;"></i>';
         }
+    }
+    return starsHTML;
+}
 
-        const startIndex = (currentPage - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-        const visibleProducts = mockupProductsDatabase.slice(startIndex, endIndex);
+// 3. Render System Core
+function renderProducts() {
+    const container = document.getElementById('productContainer');
+    container.innerHTML = '';
 
-        visibleProducts.forEach(product => {
-            const oldPriceHtml = product.oldPrice ? `<span class="old-price">$${product.oldPrice}</span>` : '';
-            const shippingHtml = product.hasFreeShipping ? `<span class="shipping-tag">Free Shipping</span>` : '';
-            
-            const cardHtml = `
-                <div class="mockup-product-card">
-                    <div class="card-img-wrapper">
-                        <img src="${product.imgUrl}" alt="${product.title}">
-                    </div>
-                    <div class="card-info-content">
-                        <a href="#" class="product-main-title">${product.title}</a>
-                        <div class="price-row">
-                            <span class="current-price">$${product.price}</span>
-                            ${oldPriceHtml}
-                        </div>
-                        <div class="meta-rating-row">
-                            <div class="stars-indicator">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-half"></i>
-                            </div>
-                            <span class="rating-value">${product.rating}</span>
-                            <span class="dot-separator">•</span>
-                            <span class="orders-count">${product.orders} orders</span>
-                            <span class="dot-separator">•</span>
-                            ${shippingHtml}
-                        </div>
-                        <p class="product-desc-text">${product.desc}</p>
-                        <a href="#" class="view-details-link">View details</a>
-                    </div>
-                    <button class="btn-wishlist-heart" title="Save to wishlist">
-                        <i class="bi bi-heart"></i>
-                    </button>
+    // Pagination slice boundaries
+    let start = (currentPage - 1) * itemsPerPage;
+    let end = start + itemsPerPage;
+    let paginatedItems = database.slice(start, end);
+
+    paginatedItems.forEach(item => {
+        const productCard = document.createElement('div');
+        productCard.className = 'card-product';
+
+        productCard.innerHTML = `
+               <a href="${item.link}">
+                <div class="img-container">
+                    <img src="${item.img}" alt="Product Image">
                 </div>
+                <button class="btn-wishlist"><i class="fa-regular fa-heart"></i></button>
+                <div class="details-container">
+                    <div class="price-row">
+                        ${item.price} ${item.oldPrice ? `<span class="old-price">${item.oldPrice}</span>` : ''}
+                    </div>
+                    <div class="meta-row">
+                        <span class="rating-stars">${generateStarsHTML(item.rating)}</span>
+                        <span class="rating-count">${item.rating}</span>
+                        <span class="orders-count">• ${item.orders}</span>
+                        ${item.shipping ? `<span class="shipping-tag">• ${item.shipping}</span>` : ''}
+                    </div>
+                    <div class="product-title">${item.title}</div>
+                    <p class="desc-text">${item.desc}</p>
+                    <a href="product-detail.html" class="view-details-link">View details</a>
+                </div>
+               </a>
             `;
-            dynamicProductsList.insertAdjacentHTML('beforeend', cardHtml);
-        });
+        container.appendChild(productCard);
+    });
 
-        renderPaginationBar();
+    renderPaginationControls();
+}
+
+// 4. Fully Functional Pagination Controls
+function renderPaginationControls() {
+    const nav = document.getElementById('paginationNav');
+    nav.innerHTML = '';
+
+    let totalPages = Math.ceil(database.length / itemsPerPage);
+
+    // Previous Button
+    const prevLi = document.createElement('li');
+    prevLi.className = currentPage === 1 ? 'disabled' : '';
+    prevLi.innerHTML = `<a onclick="goToPage(${currentPage - 1})"><i class="fa-solid fa-chevron-left"></i></a>`;
+    nav.appendChild(prevLi);
+
+    // Page Numbers Loop (Generates exactly 3 to 4 pages as requested)
+    for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement('li');
+        li.className = currentPage === i ? 'active' : '';
+        li.innerHTML = `<a onclick="goToPage(${i})">${i}</a>`;
+        nav.appendChild(li);
     }
 
-    // ==========================================================================
-    // 3. PAGINATION INTERACTION ENGINE
-    // ==========================================================================
-    function renderPaginationBar() {
-        if (!paginationNav) return;
-        paginationNav.innerHTML = '';
-        
-        const totalPages = Math.ceil(mockupProductsDatabase.length / itemsPerPage);
+    // Next Button
+    const nextLi = document.createElement('li');
+    nextLi.className = currentPage === totalPages ? 'disabled' : '';
+    nextLi.innerHTML = `<a onclick="goToPage(${currentPage + 1})"><i class="fa-solid fa-chevron-right"></i></a>`;
+    nav.appendChild(nextLi);
+}
 
-        // Left Arrow
-        const prevDisabled = (currentPage === 1) ? 'disabled' : '';
-        let navHtml = `
-            <li class="page-item ${prevDisabled}">
-                <a class="page-link" href="#" data-page="${currentPage - 1}">
-                    <i class="bi bi-chevron-left"></i>
-                </a>
-            </li>
-        `;
+function goToPage(page) {
+    let totalPages = Math.ceil(database.length / itemsPerPage);
+    if (page < 1 || page > totalPages) return;
+    currentPage = page;
+    renderProducts();
+    window.scrollTo(0, 0); // Smooth experience scroll
+}
 
-        // Numeric Page Loops
-        for (let i = 1; i <= totalPages; i++) {
-            const activeState = (currentPage === i) ? 'active' : '';
-            navHtml += `
-                <li class="page-item ${activeState}">
-                    <a class="page-link" href="#" data-page="${i}">${i}</a>
-                </li>
-            `;
-        }
+function changeItemsPerPage() {
+    itemsPerPage = parseInt(document.getElementById('itemsPerPage').value);
+    currentPage = 1; // reset to page 1 on adjustment
+    renderProducts();
+}
 
-        // Right Arrow
-        const nextDisabled = (currentPage === totalPages) ? 'disabled' : '';
-        navHtml += `
-            <li class="page-item ${nextDisabled}">
-                <a class="page-link" href="#" data-page="${currentPage + 1}">
-                    <i class="bi bi-chevron-right"></i>
-                </a>
-            </li>
-        `;
-
-        paginationNav.innerHTML = navHtml;
-    }
-
-    // ==========================================================================
-    // 4. SAFE EVENT DELEGATION LISTENER (Removes inline 'onclick' bugs)
-    // ==========================================================================
-    if (paginationNav) {
-        paginationNav.addEventListener('click', function(event) {
-            const linkElement = event.target.closest('.page-link');
-            if (!linkElement) return;
-            
-            event.preventDefault();
-
-            const targetPage = parseInt(linkElement.getAttribute('data-page'));
-            const totalPages = Math.ceil(mockupProductsDatabase.length / itemsPerPage);
-
-            if (targetPage >= 1 && targetPage <= totalPages) {
-                currentPage = targetPage;
-                renderActivePageData();
-                // FIX: window.scrollTo wali line yahan se delete kar di gayi hai taake page move na kare!
-            }
-        });
-    }
-
-    // Dropdown Change Listener
-    if (itemsPerPageSelect) {
-        itemsPerPageSelect.addEventListener('change', function() {
-            itemsPerPage = parseInt(this.value);
-            currentPage = 1;
-            renderActivePageData();
-        });
-    }
-
-    // Initialize layout trigger
-    renderActivePageData();
+// Initialization trigger
+document.addEventListener("DOMContentLoaded", function () {
+    renderProducts();
 });

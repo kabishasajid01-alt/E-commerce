@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,10 +15,11 @@
     <!--font awsom-->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
 
 </head>
-<body>
+
+<body style="background-color: #f5fafd;">
 
     <!-- MAIN HEADER CONTAINER -->
     <header class="main-header">
@@ -28,36 +30,11 @@
 
                 <!-- Left Identity Block: Hamburger Toggle (Mobile Only) & Brand Title -->
                 <div class="col-auto d-flex align-items-center gap-2">
-                    <!-- Mobile Hamburger Menu Toggle -->
-                    <button class="btn btn-link text-dark p-0 d-md-none me-1" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#mobileNavOffcanvas" aria-controls="mobileNavOffcanvas">
-                        <i class="bi bi-list fs-2"></i>
-                    </button>
 
-                    <a href="#" class="brand-logo">
+                    <a href="index.html" class="brand-logo">
                         <!-- Custom Vector/Icon Mimicking Image Logo -->
-                        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="24" height="24" rx="6" fill="#0d6efd" />
-                            <path
-                                d="M16 9h-1c0-1.66-1.34-3-3-3S9 7.34 9 9H8c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-6c0-1.1-.9-2-2-2zm-4-1c1.1 0 2 .9 2 2H10c0-1.1.9-2 2-2zm4 9H8v-5h8v5z"
-                                fill="white" />
-                        </svg>
-                        <span>Brand</span>
+                        <img src="images/brand/logo-colored.png" alt="logo">
                     </a>
-                </div>
-
-                <!-- Center Block: Desktop Blue Search bar component (Hidden on Mobile) -->
-                <div class="col-12 col-md-5 col-lg-6 d-none d-md-block">
-                    <div class="input-group search-group">
-                        <input type="text" class="form-control search-input" placeholder="Search" aria-label="Search">
-                        <select class="form-select category-select">
-                            <option selected>All category</option>
-                            <option value="1">Gadgets</option>
-                            <option value="2">Clothes</option>
-                            <option value="3">Accessories</option>
-                        </select>
-                        <button class="btn btn-primary search-btn" type="button">Search</button>
-                    </div>
                 </div>
 
                 <!-- Right Block: Desktop Actions Panel vs Mobile Utility Row Layout -->
@@ -76,7 +53,7 @@
                             <i class="bi bi-heart"></i>
                             <span>Orders</span>
                         </a>
-                        <a href="#" class="user-action-item">
+                        <a href="cart.html" class="user-action-item">
                             <i class="bi bi-cart3"></i>
                             <span>My cart</span>
                         </a>
@@ -84,115 +61,397 @@
 
                     <!-- Mobile Navigation Icons (Displayed precisely as in image_058346.png) -->
                     <div class="d-flex d-md-none align-items-center gap-3">
-                        <a href="#" class="text-dark fs-4"><i class="bi bi-cart3"></i></a>
+                        <a href="cart.html" class="text-dark fs-4"><i class="bi bi-cart3"></i></a>
                         <a href="#" class="text-dark fs-4"><i class="bi bi-person"></i></a>
                     </div>
                 </div>
 
             </div> <!-- /End Top Row -->
 
-            
- 
-            <div class="d-block d-lg-none d-md-none">
-                <div class="category-container" id="categories">
-
-                <div class="category active">All category</div>
-                <div class="category">Gadgets</div>
-                <div class="category">Clothes</div>
-                <div class="category">Accessories</div>
-                <div class="category">Shoes</div>
-                <div class="category">Books</div>
-                <div class="category">Sports</div>
-
-            </div>
-            </div>
-
         </div>
     </header>
 
-<div class="container my-5">
-    <h3 class="cart-main-title mb-4">My cart (3)</h3>
+    <div class="container my-5">
+        <h3 class="cart-main-title mb-4">My cart (3)</h3>
 
-    <div class="row g-4">
-        <div class="col-12 col-lg-9">
-            <div class="cart-items-wrapper">
-                <div id="cartItemsContainer">
+        <div class="row g-4">
+            <div class="col-12 col-lg-9">
+                <div class="cart-items-wrapper">
+                    <div id="cartItemsContainer"></div>
+
+                    <div class="cart-footer-actions d-flex justify-content-between align-items-center p-3">
+                        <button class="btn btn-primary px-3"><i class="bi bi-arrow-left me-2"></i>Back to shop</button>
+                        <button class="btn btn-outline-primary px-3" id="clearAllCartBtn">Remove all</button>
                     </div>
+                </div>
 
-                <div class="cart-footer-actions d-flex justify-content-between align-items-center p-3">
-                    <button class="btn btn-primary px-3"><i class="bi bi-arrow-left me-2"></i>Back to shop</button>
-                    <button class="btn btn-outline-primary px-3" id="clearAllCartBtn">Remove all</button>
+                <div class="row mt-4 d-none d-md-flex text-muted perks-row">
+                    <div class="col-md-4 d-flex align-items-center gap-3">
+                        <div class="perk-icon-box"><i class="bi bi-lock-fill"></i></div>
+                        <div>
+                            <div class="perk-title">Secure payment</div>
+                            <small>Have you ever finally just</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center gap-3">
+                        <div class="perk-icon-box"><i class="bi bi-chat-dots-fill"></i></div>
+                        <div>
+                            <div class="perk-title">Customer support</div>
+                            <small>Have you ever finally just</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center gap-3">
+                        <div class="perk-icon-box"><i class="bi bi-truck"></i></div>
+                        <div>
+                            <div class="perk-title">Free delivery</div>
+                            <small>Have you ever finally just</small>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="row mt-4 d-none d-md-flex text-muted perks-row">
-                <div class="col-md-4 d-flex align-items-center gap-3">
-                    <div class="perk-icon-box"><i class="bi bi-lock-fill"></i></div>
-                    <div>
-                        <div class="perk-title">Secure payment</div>
-                        <small>Have you ever finally just</small>
+            <div class="col-12 col-lg-3">
+                <div class="coupon-card mb-3 p-3">
+                    <label class="form-label text-muted small mb-2">Have a coupon?</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Add coupon">
+                        <button class="btn btn-outline-primary" type="button">Apply</button>
                     </div>
                 </div>
-                <div class="col-md-4 d-flex align-items-center gap-3">
-                    <div class="perk-icon-box"><i class="bi bi-chat-dots-fill"></i></div>
-                    <div>
-                        <div class="perk-title">Customer support</div>
-                        <small>Have you ever finally just</small>
+
+                <div class="summary-card p-3">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-muted">Subtotal:</span>
+                        <span class="fw-semibold text-dark" id="summarySubtotal">$0.00</span>
                     </div>
-                </div>
-                <div class="col-md-4 d-flex align-items-center gap-3">
-                    <div class="perk-icon-box"><i class="bi bi-truck"></i></div>
-                    <div>
-                        <div class="perk-title">Free delivery</div>
-                        <small>Have you ever finally just</small>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-muted">Discount:</span>
+                        <span class="text-danger" id="summaryDiscount">-$60.00</span>
                     </div>
-                </div>
-            </div>
-        </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="text-muted">Tax:</span>
+                        <span class="text-success" id="summaryTax">+$14.00</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <span class="fw-bold fs-5">Total:</span>
+                        <span class="fw-bold fs-4 text-dark" id="summaryTotal">$0.00</span>
+                    </div>
 
-        <div class="col-12 col-lg-3">
-            <div class="coupon-card mb-3 p-3">
-                <label class="form-label text-muted small mb-2">Have a coupon?</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Add coupon">
-                    <button class="btn btn-outline-primary" type="button">Apply</button>
-                </div>
-            </div>
+                    <button class="btn btn-success w-100 btn-checkout py-2 mb-3">Checkout</button>
 
-            <div class="summary-card p-3">
-                <div class="d-flex justify-content-between mb-2">
-                    <span class="text-muted">Subtotal:</span>
-                    <span class="fw-semibold text-dark" id="summarySubtotal">$0.00</span>
-                </div>
-                <div class="d-flex justify-content-between mb-2">
-                    <span class="text-muted">Discount:</span>
-                    <span class="text-danger" id="summaryDiscount">-$60.00</span>
-                </div>
-                <div class="d-flex justify-content-between mb-3">
-                    <span class="text-muted">Tax:</span>
-                    <span class="text-success" id="summaryTax">+$14.00</span>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <span class="fw-bold fs-5">Total:</span>
-                    <span class="fw-bold fs-4 text-dark" id="summaryTotal">$0.00</span>
-                </div>
-
-                <button class="btn btn-success w-100 btn-checkout py-2 mb-3">Checkout</button>
-                
-                <div class="d-flex justify-content-center gap-2 flex-wrap">
-                    <span class="badge bg-light text-dark border p-2"><i class="bi bi-credit-card-2-front text-primary"></i> Visa</span>
-                    <span class="badge bg-light text-dark border p-2"><i class="bi bi-credit-card text-danger"></i> Master</span>
-                    <span class="badge bg-light text-dark border p-2"><i class="bi bi-paypal text-info"></i> Paypal</span>
-                    <span class="badge bg-light text-dark border p-2"><i class="bi bi-wallet2 text-warning"></i> Amex</span>
+                    <div class="d-flex justify-content-center gap-2 flex-wrap">
+                        <span class="badge bg-light text-dark border p-2"><i
+                                class="bi bi-credit-card-2-front text-primary"></i> Visa</span>
+                        <span class="badge bg-light text-dark border p-2"><i class="bi bi-credit-card text-danger"></i>
+                            Master</span>
+                        <span class="badge bg-light text-dark border p-2"><i class="bi bi-paypal text-info"></i>
+                            Paypal</span>
+                        <span class="badge bg-light text-dark border p-2"><i class="bi bi-wallet2 text-warning"></i>
+                            Amex</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <div class="container">
+        <div class="saved-later-container">
+            <!-- Exact Heading text from both layouts -->
+            <div class="section-heading">Saved for later</div>
+
+            <!-- 1. DESKTOP GRID VIEW (image_63f444.png) -->
+            <div class="row g-3 desktop-view-grid">
+                <!-- Item 1 -->
+                <div class="col-md-3">
+                    <div class="desktop-card">
+                        <a href="product-detail.html">
+                            <div class="desktop-img-wrapper">
+                                <img src="images/tech/image_32-removebg-preview.png" alt="Tablet" height="200px">
+                            </div>
+                            <div class="product-price">$99.50</div>
+                            <div class="product-desc">GoPro HERO6 4K Action Camera - Black</div>
+                            <button class="btn-move-cart-desktop">
+                                <i class="bi bi-cart-plus"></i> Move to cart
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="col-md-3">
+                    <div class="desktop-card">
+                        <a href="product-detail.html">
+                            <div class="desktop-img-wrapper">
+                                <img src="images/tech/image_23-removebg-preview.png" alt="iPhone">
+                            </div>
+                            <div class="product-price">$99.50</div>
+                            <div class="product-desc">GoPro HERO6 4K Action Camera - Black</div>
+                            <button class="btn-move-cart-desktop">
+                                <i class="bi bi-cart-plus"></i> Move to cart
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="col-md-3">
+                    <div class="desktop-card">
+                        <a href="product-detail.html">
+                            <div class="desktop-img-wrapper">
+                                <img src="images/tech/image_29-removebg-preview.png" alt="Smartwatch">
+                            </div>
+                            <div class="product-price">$99.50</div>
+                            <div class="product-desc">GoPro HERO6 4K Action Camera - Black</div>
+                            <button class="btn-move-cart-desktop">
+                                <i class="bi bi-cart-plus"></i> Move to cart
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="col-md-3">
+                    <div class="desktop-card">
+                        <a href="product-detail.html">
+                            <div class="desktop-img-wrapper">
+                                <img src="images/tech/image_34-removebg-preview.png" alt="Macbook">
+                            </div>
+                            <div class="product-price">$99.50</div>
+                            <div class="product-desc">GoPro HERO6 4K Action Camera - Black</div>
+                            <button class="btn-move-cart-desktop">
+                                <i class="bi bi-cart-plus"></i> Move to cart
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. MOBILE VIEW LIST STACK (image_63f429.png) -->
+            <div class="mobile-view-stack">
+                <!-- Mobile Item 1 -->
+                <div class="mobile-list-card">
+                    <a href="product-detail.html">
+                        <div class="mobile-img-wrapper">
+                            <img src="images/tech/image_29-removebg-preview.png" alt="Headphones">
+                        </div>
+                        <div class="mobile-info-pane">
+                            <div class="mobile-product-title">Regular Fit Resort Shirt</div>
+                            <div class="mobile-product-price">$57.70</div>
+                            <div class="mobile-action-row">
+                                <a href="#" class="btn-mobile-action move-blue">Move to cart</a>
+                                <a href="#" class="btn-mobile-action remove-red">Remove</a>
+                            </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mobile Item 2 -->
+            <div class="mobile-list-card">
+                <a href="product-detail.html">
+                    <div class="mobile-img-wrapper">
+                        <img src="images/tech/image_23-removebg-preview.png" alt="Phone">
+                    </div>
+                    <div class="mobile-info-pane">
+                        <div class="mobile-product-title">Regular Fit Resort Shirt</div>
+                        <div class="mobile-product-price">$57.70</div>
+                        <div class="mobile-action-row">
+                            <a href="#" class="btn-mobile-action move-blue">Move to cart</a>
+                            <a href="#" class="btn-mobile-action remove-red">Remove</a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Mobile Item 3 -->
+            <div class="mobile-list-card">
+                <a href="product-detail.html">
+                    <div class="mobile-img-wrapper">
+                        <img src="images/tech/8-removebg-preview.png" alt="Watch">
+                    </div>
+                    <div class="mobile-info-pane">
+                        <div class="mobile-product-title">Regular Fit Resort Shirt</div>
+                        <div class="mobile-product-price">$57.70</div>
+                        <div class="mobile-action-row">
+                            <a href="#" class="btn-mobile-action move-blue">Move to cart</a>
+                            <a href="#" class="btn-mobile-action remove-red">Remove</a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+    <div class="container my-4">
+        <!-- Main Track Block Layout Engine -->
+        <div class="promo-banner d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+
+            <!-- Text Details Block Partition -->
+            <div>
+                <h2 class="banner-title">Super discount on more than 100 USD</h2>
+                <p class="banner-subtitle">Have you ever finally just write dummy info</p>
+            </div>
+
+            <!-- Action Element Trigger Partition -->
+            <div>
+                <button class="btn btn-warning btn-shop-now">Shop now</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- footer -->
+
+    <div class="bg-color bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 footeerr">
+
+                    <div class="brnd">
+                        <img src="images/brand/logo-colored.png" alt="logo">
+                        <p>Best information about the company gies here but now lorem ipsum is</p>
+                        <div class="media">
+                            <div class="media-icone">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </div>
+
+                            <div class="media-icone" style="padding: 5px 12px;">
+                                <i class="fa-brands fa-twitter"></i>
+                            </div>
+
+                            <div class="media-icone" style="padding: 5px 12px;">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </div>
+
+                            <div class="media-icone" style="padding: 5px 12px;">
+                                <i class="fa-brands fa-instagram"></i>
+                            </div>
+
+                            <div class="media-icone" style="padding: 5px 9px;">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-1 footeerr" style="padding-left: 10px;">
+                    <div class="foot-about">
+                        <h3>About</h3>
+                        <p>About Us</p>
+                        <p>Find store</p>
+                        <p>Categories</p>
+                        <p>Blogs</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 footeerr footeerr-sp">
+                    <div class="foot-about">
+                        <h3>Partnership</h3>
+                        <p>About Us</p>
+                        <p>Find store</p>
+                        <p>Categories</p>
+                        <p>Blogs</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 footeerr">
+                    <div class="foot-about">
+                        <h3>Information</h3>
+                        <p>Help Center</p>
+                        <p>Money Refund</p>
+                        <p>Shipping</p>
+                        <p>Contact us</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 footeerr">
+                    <div class="foot-about">
+                        <h3>For users</h3>
+                        <p>Login</p>
+                        <p>Register</p>
+                        <p>Settings</p>
+                        <p>My Orders</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 footeerr">
+                    <div class="foot-about">
+                        <h3>Get App</h3>
+                        <img src="images/app/Group.png" alt="img">
+                        <img src="images/app/market-button.png" alt="img">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="footer-bottom-content">
+            <!-- Left Side: Copyright Text -->
+            <div class="copyright-text">
+                &copy; 2026 Ecommerce.
+            </div>
+
+            <!-- Right Side: Country/Language Dropdown Menu -->
+            <div class="dropdown language-dropdown">
+                <button class="dropdown-toggle" type="button" id="footerLangDropdown" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="images/flags/US@2x.png" alt="us"> English <i
+                        class="fa-solid fa-chevron-up arrow-icon"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="footerLangDropdown">
+                    <li>
+                        <a class="dropdown-item active" href="#">
+                            <img src="images/flags/AE@2x.png" alt="us"> Arabic
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item active" href="#">
+                            <img src="images/flags/CN@2x.png" alt="us"> Chines
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item active" href="#">
+                            <img src="images/flags/DK@2x.png" alt="us"> Danish
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item active" href="#">
+                            <img src="images/flags/FR@2x.png" alt="us"> Franch
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item active" href="#">
+                            <img src="images/flags/GB@2x.png" alt="us"> English
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item active" href="#">
+                            <img src="images/flags/icon.png" alt="us"> Austrialian
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item active" href="#">
+                            <img src="images/flags/IT@2x.png" alt="us"> Italian
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item active" href="#">
+                            <img src="images/flags/RU@2x.png" alt="us"> Russhian
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
 
-<script src="js/cart.js"></script>
-<script src="js/script.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/script.js"></script>
 </body>
+
 </html>

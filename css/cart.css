@@ -1,5 +1,5 @@
 body {
-    background-color: #f7f8fa;
+    background-color: #f5fafd;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
@@ -15,8 +15,8 @@ body {
     background: #ffffff;
     border: 1px solid #e3e8ee;
     border-radius: 6px;
+    padding: 20px;
 }
-
 /* ==========================================================================
            DESKTOP PERFECT HORIZONTAL FLEX ALIGNMENT FIX
            ========================================================================== */
@@ -266,5 +266,256 @@ body {
 
     .summary-card hr {
         display: none;
+    }
+}
+
+
+/* latee saved */
+
+.saved-later-container {
+    background: #ffffff;
+    border: 1px solid #e3e8ee;
+    border-radius: 6px;
+    padding: 22px;
+}
+
+.section-heading {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1c1c1c;
+    margin-bottom: 20px;
+}
+
+/* ==========================================================================
+           DESKTOP CARD STYLES (image_63f444.png)
+           ========================================================================== */
+.desktop-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.desktop-card a {
+    text-decoration: none;
+}
+
+.desktop-img-wrapper {
+    background-color: #eeeeee;
+    /* Exact image box background color from pic 1 */
+    border-radius: 6px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    margin-bottom: 12px;
+}
+
+.product-price {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1c1c1c;
+    margin-bottom: 5px;
+}
+
+.product-desc {
+    font-size: 13px;
+    color: #606060;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    overflow: hidden;
+    height: 36px;
+    /* Matrix uniformity fallback */
+}
+
+/* Outline Buttons Custom Styling */
+.btn-move-cart-desktop {
+    border: 1px solid #e3e8ee;
+    background: #ffffff;
+    color: #0d6efd;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    /* Keeps button left-aligned precisely */
+    transition: 0.15s ease;
+}
+
+.btn-move-cart-desktop:hover {
+    background-color: #f7f8fa;
+    color: #0a58ca;
+}
+
+/* ==========================================================================
+           MOBILE LIST CARDS (image_63f429.png)
+           ========================================================================== */
+.mobile-list-card {
+    background: #ffffff;
+    border: 1px solid #e3e8ee;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.mobile-list-card a {
+    text-decoration: none;
+}
+
+.mobile-img-wrapper {
+    width: 75px;
+    height: 75px;
+    flex-shrink: 0;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-img-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.mobile-info-pane {
+    flex-grow: 1;
+}
+
+.mobile-product-title {
+    font-size: 14px;
+    color: #505050;
+    margin-bottom: 2px;
+}
+
+.mobile-product-price {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1c1c1c;
+    margin-bottom: 8px;
+}
+
+.mobile-action-row {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-mobile-action {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 5px;
+    background: #ffffff;
+    border: 1px solid #e3e8ee;
+    text-decoration: none;
+}
+
+.btn-mobile-action.move-blue {
+    color: #0d6efd;
+}
+
+.btn-mobile-action.remove-red {
+    color: #ff3b30;
+}
+
+/* ==========================================================================
+           RESPONSIVE SWITCH CONTROLLER
+           ========================================================================== */
+/* Jab screen small (Mobile) ho to Desktop hidden rhega, aur vice-versa */
+@media (min-width: 768px) {
+    .mobile-view-stack {
+        display: none !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .desktop-view-grid {
+        display: none !important;
+    }
+
+    .saved-later-container {
+        border: none;
+        background: transparent;
+        padding: 10px 15px;
+    }
+
+    .section-heading {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+}
+
+.promo-banner {
+    position: relative;
+    background: linear-gradient(103deg, #237cff 0%, #237cff 61%, #005ade 61.1%, #005ade 100%);
+    border-radius: 8px;
+    padding: 28px 32px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.banner-title {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    letter-spacing: -0.2px;
+}
+
+.banner-subtitle {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+/* Orange Interactive Button Target */
+.btn-shop-now {
+    background-color: #ff9017 !important;
+    border-color: #ff9017 !important;
+    color: #ffffff !important;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 9px 20px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-shop-now:hover {
+    background-color: #e07b0d !important;
+    border-color: #e07b0d !important;
+}
+
+.btn-shop-now:active {
+    transform: scale(0.98);
+}
+
+/* Mobile Layout Adaptability Rules */
+@media (max-width: 767.98px) {
+    .promo-banner {
+        background: #237cff;
+        /* Fallback to solid brand accent tint on mobile screens */
+        text-align: center;
+        padding: 24px 20px;
+    }
+
+    .banner-title {
+        font-size: 18px;
+    }
+
+    .banner-subtitle {
+        font-size: 13px;
+        margin-bottom: 16px;
+    }
+
+    .btn-shop-now {
+        width: 100%;
+        display: block;
     }
 }

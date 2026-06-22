@@ -9,7 +9,7 @@ let cartItemsDatabase = [
         seller: "Artel Market",
         price: 78.99,
         quantity: 9,
-        imgUrl: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=200"
+        imgUrl: "images/cloths/bitmap.png"
     },
     {
         id: "prod-102",
@@ -20,7 +20,7 @@ let cartItemsDatabase = [
         seller: "Best factory LLC",
         price: 39.00,
         quantity: 3,
-        imgUrl: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=200"
+        imgUrl: "images/cloths/image 26.png"
     },
     {
         id: "prod-103",
@@ -31,7 +31,7 @@ let cartItemsDatabase = [
         seller: "Artel Market",
         price: 170.50,
         quantity: 1,
-        imgUrl: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=200"
+        imgUrl: "images/interior/6.png"
     }
 ];
 

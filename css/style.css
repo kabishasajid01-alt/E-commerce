@@ -23,22 +23,6 @@ img {
     border-bottom: 1px solid #e3e8ee;
 }
 
-.brand-logo {
-    font-weight: 700;
-    font-size: 22px;
-    color: #0d6efd;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.brand-logo img,
-.brand-logo svg {
-    background-color: #e3f2fd;
-    border-radius: 6px;
-    padding: 4px;
-}
 
 /* Unified Blue Desktop Search Bar Container */
 .search-group {
@@ -290,6 +274,9 @@ img {
     color: #1c1c1c !important;
     font-weight: 500;
 }
+.nav-tabs a {
+    text-decoration: none;
+}
 
 /* ==========================================================================
    CENTER ACTIVE BANNER PANEL
@@ -513,6 +500,9 @@ img {
     justify-content: space-between;
     transition: background-color 0.2s;
 }
+.deal-product-card a {
+    text-decoration: none;
+}
 
 .deal-product-card:last-child {
     border-right: none;
@@ -695,6 +685,9 @@ img {
     height: 128px;
     /* Balanced row height balance */
     transition: background-color 0.15s ease;
+}
+.product-item-card a {
+    text-decoration: none;
 }
 
 /* Clear bottom outer borders on desktop grid rows */
@@ -1029,9 +1022,7 @@ img {
 }
 
 .product-img-container img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+    height: 150px;
     /* Product image aspect ratio maintainer */
 }
 

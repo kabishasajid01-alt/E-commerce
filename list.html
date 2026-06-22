@@ -7,6 +7,7 @@
     <title>product listing page</title>
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/list.css">
     <!-- Bootstrap 5 CSS -->
     <link rel="stylesheet" href="css/cdnbootstrap.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -33,15 +34,9 @@
                         <i class="bi bi-list fs-2"></i>
                     </button>
 
-                    <a href="#" class="brand-logo">
+                    <a href="index.html" class="brand-logo">
                         <!-- Custom Vector/Icon Mimicking Image Logo -->
-                        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="24" height="24" rx="6" fill="#0d6efd" />
-                            <path
-                                d="M16 9h-1c0-1.66-1.34-3-3-3S9 7.34 9 9H8c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-6c0-1.1-.9-2-2-2zm-4-1c1.1 0 2 .9 2 2H10c0-1.1.9-2 2-2zm4 9H8v-5h8v5z"
-                                fill="white" />
-                        </svg>
-                        <span>Brand</span>
+                        <img src="images/brand/logo-colored.png" alt="logo">
                     </a>
                 </div>
 
@@ -75,7 +70,7 @@
                             <i class="bi bi-heart"></i>
                             <span>Orders</span>
                         </a>
-                        <a href="#" class="user-action-item">
+                        <a href="cart.html" class="user-action-item">
                             <i class="bi bi-cart3"></i>
                             <span>My cart</span>
                         </a>
@@ -83,7 +78,7 @@
 
                     <!-- Mobile Navigation Icons (Displayed precisely as in image_058346.png) -->
                     <div class="d-flex d-md-none align-items-center gap-3">
-                        <a href="#" class="text-dark fs-4"><i class="bi bi-cart3"></i></a>
+                        <a href="cart.html" class="text-dark fs-4"><i class="bi bi-cart3"></i></a>
                         <a href="#" class="text-dark fs-4"><i class="bi bi-person"></i></a>
                     </div>
                 </div>
@@ -212,533 +207,370 @@
     </div>
 
 
-    <div class="container my-5">
+    <!-- pagination -->
+    <div class="container">
         <div class="row">
-            <div class="col-md-4 col-lg-3 d-none d-lg-block d-md-block">
 
-                <div class="accordion exact-mockup-sidebar" id="sidebarFilterAccordion">
+            <div class="breadcrumb py-4 ms-3">
+                <a href="#">Home</a>
+                <span>›</span>
 
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#panelCategory" aria-expanded="true">
-                                Category
-                            </button>
-                        </h2>
-                        <div id="panelCategory" class="accordion-collapse collapse show">
-                            <div class="accordion-body pt-1">
-                                <ul class="list-unstyled custom-nav-list mb-0">
-                                    <li><a href="#">Mobile accessory</a></li>
-                                    <li><a href="#">Electronics</a></li>
-                                    <li><a href="#">Smartphones</a></li>
-                                    <li><a href="#">Modern tech</a></li>
-                                    <li><a href="#" class="action-see-all">See all</a></li>
-                                </ul>
+                <a href="#">Clothings</a>
+                <span>›</span>
+
+                <a href="#">Men's wear</a>
+                <span>›</span>
+
+                <span class="active">Summer clothing</span>
+            </div>
+
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="filter-sidebar">
+
+                    <div class="filter-section">
+                        <div class="filter-title">
+                            Category <i class="fa-solid fa-chevron-up"></i>
+                        </div>
+                        <div class="filter-content">
+                            <span class="filter-link" onclick="toggleLinkBadge(this, 'Mobile accessory')">Mobile
+                                accessory</span>
+                            <span class="filter-link" onclick="toggleLinkBadge(this, 'Electronics')">Electronics</span>
+                            <span class="filter-link" onclick="toggleLinkBadge(this, 'Smartphones')">Smartphones</span>
+                            <span class="filter-link" onclick="toggleLinkBadge(this, 'Modern tech')">Modern tech</span>
+                            <a href="#" class="see-all-link">See all</a>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-title">
+                            Brands <i class="fa-solid fa-chevron-up"></i>
+                        </div>
+                        <div class="filter-content">
+                            <div class="form-check">
+                                <input class="form-check-input filter-checkbox" type="checkbox" id="brandSamsung"
+                                    value="Samsung" onchange="handleCheckboxChange(this)">
+                                <label class="form-check-label" for="brandSamsung">Samsung</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input filter-checkbox" type="checkbox" id="brandApple"
+                                    value="Apple" onchange="handleCheckboxChange(this)">
+                                <label class="form-check-label" for="brandApple">Apple</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input filter-checkbox" type="checkbox" id="brandHuawei"
+                                    value="Huawei" onchange="handleCheckboxChange(this)">
+                                <label class="form-check-label" for="brandHuawei">Huawei</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input filter-checkbox" type="checkbox" id="brandPeco"
+                                    value="Peco" onchange="handleCheckboxChange(this)">
+                                <label class="form-check-label" for="brandPeco">Peco</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input filter-checkbox" type="checkbox" id="brandLenovo"
+                                    value="Lenovo" onchange="handleCheckboxChange(this)">
+                                <label class="form-check-label" for="brandLenovo">Lenovo</label>
+                            </div>
+                            <a href="#" class="see-all-link">See all</a>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-title">
+                            Features <i class="fa-solid fa-chevron-up"></i>
+                        </div>
+                        <div class="filter-content">
+                            <div class="form-check">
+                                <input class="form-check-input filter-checkbox" type="checkbox" id="featMetallic"
+                                    value="Metallic" onchange="handleCheckboxChange(this)">
+                                <label class="form-check-label" for="featMetallic">Metallic</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input filter-checkbox" type="checkbox" id="featPlastic"
+                                    value="Plastic cover" onchange="handleCheckboxChange(this)">
+                                <label class="form-check-label" for="featPlastic">Plastic cover</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input filter-checkbox" type="checkbox" id="featRam"
+                                    value="8GB Ram" onchange="handleCheckboxChange(this)">
+                                <label class="form-check-label" for="featRam">8GB Ram</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input filter-checkbox" type="checkbox" id="featPower"
+                                    value="Super power" onchange="handleCheckboxChange(this)">
+                                <label class="form-check-label" for="featPower">Super power</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input filter-checkbox" type="checkbox" id="featMemory"
+                                    value="Large memory" onchange="handleCheckboxChange(this)">
+                                <label class="form-check-label" for="featMemory">Large memory</label>
+                            </div>
+                            <a href="#" class="see-all-link">See all</a>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-title">
+                            Price range <i class="fa-solid fa-chevron-up"></i>
+                        </div>
+                        <div class="filter-content">
+                            <input type="range" class="form-range" min="0" max="999999" id="priceSlider" value="500000"
+                                oninput="updatePriceInputs(this.value)">
+
+                            <div class="price-input-grid">
+                                <div class="price-field">
+                                    <label>Min</label>
+                                    <input type="number" id="minPrice" value="0" placeholder="0">
+                                </div>
+                                <div class="price-field">
+                                    <label>Max</label>
+                                    <input type="number" id="maxPrice" value="999999" placeholder="999999">
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-apply-price"
+                                onclick="applyPriceFilter()">Apply</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-title">
+                            Condition <i class="fa-solid fa-chevron-up"></i>
+                        </div>
+                        <div class="filter-content">
+                            <div class="form-check">
+                                <input class="form-check-input filter-radio" type="radio" name="conditionRadio"
+                                    id="condAny" value="Any" checked onchange="handleRadioChange(this)">
+                                <label class="form-check-label" for="condAny">Any</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input filter-radio" type="radio" name="conditionRadio"
+                                    id="condRefurbished" value="Refurbished" onchange="handleRadioChange(this)">
+                                <label class="form-check-label" for="condRefurbished">Refurbished</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input filter-radio" type="radio" name="conditionRadio"
+                                    id="condBrandNew" value="Brand new" onchange="handleRadioChange(this)">
+                                <label class="form-check-label" for="condBrandNew">Brand new</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input filter-radio" type="radio" name="conditionRadio"
+                                    id="condOld" value="Old items" onchange="handleRadioChange(this)">
+                                <label class="form-check-label" for="condOld">Old items</label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#panelBrands" aria-expanded="true">
-                                Brands
-                            </button>
-                        </h2>
-                        <div id="panelBrands" class="accordion-collapse collapse show">
-                            <div class="accordion-body pt-1">
-                                <div class="form-check custom-sidebar-check"><input class="form-check-input"
-                                        type="checkbox" id="brandSamsung"><label class="form-check-label"
-                                        for="brandSamsung">Samsung</label></div>
-                                <div class="form-check custom-sidebar-check"><input class="form-check-input"
-                                        type="checkbox" id="brandApple"><label class="form-check-label"
-                                        for="brandApple">Apple</label></div>
-                                <div class="form-check custom-sidebar-check"><input class="form-check-input"
-                                        type="checkbox" id="brandHuawei"><label class="form-check-label"
-                                        for="brandHuawei">Huawei</label></div>
-                                <div class="form-check custom-sidebar-check"><input class="form-check-input"
-                                        type="checkbox" id="brandPoco"><label class="form-check-label"
-                                        for="brandPoco">Poco</label></div>
-                                <div class="form-check custom-sidebar-check"><input class="form-check-input"
-                                        type="checkbox" id="brandLenovo"><label class="form-check-label"
-                                        for="brandLenovo">Lenovo</label></div>
-                                <a href="#" class="action-see-all d-block mt-2">See all</a>
-                            </div>
+                    <div class="filter-section">
+                        <div class="filter-title">
+                            Ratings <i class="fa-solid fa-chevron-up"></i>
                         </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#panelFeatures" aria-expanded="true">
-                                Features
-                            </button>
-                        </h2>
-                        <div id="panelFeatures" class="accordion-collapse collapse show">
-                            <div class="accordion-body pt-1">
-                                <div class="form-check custom-sidebar-check"><input class="form-check-input"
-                                        type="checkbox" id="featMetallic"><label class="form-check-label"
-                                        for="featMetallic">Metallic</label></div>
-                                <div class="form-check custom-sidebar-check"><input class="form-check-input"
-                                        type="checkbox" id="featPlastic"><label class="form-check-label"
-                                        for="featPlastic">Plastic cover</label></div>
-                                <div class="form-check custom-sidebar-check"><input class="form-check-input"
-                                        type="checkbox" id="featRam"><label class="form-check-label" for="featRam">8GB
-                                        Ram</label></div>
-                                <div class="form-check custom-sidebar-check"><input class="form-check-input"
-                                        type="checkbox" id="featPower"><label class="form-check-label"
-                                        for="featPower">Super power</label></div>
-                                <div class="form-check custom-sidebar-check"><input class="form-check-input"
-                                        type="checkbox" id="featMemory"><label class="form-check-label"
-                                        for="featMemory">Large Memory</label></div>
-                                <a href="#" class="action-see-all d-block mt-2">See all</a>
+                        <div class="filter-content">
+                            <div class="form-check d-flex align-items-center">
+                                <input class="form-check-input filter-checkbox" type="checkbox" id="rate5"
+                                    value="5 star" onchange="handleCheckboxChange(this)">
+                                <label class="form-check-label d-flex align-items-center" for="rate5">
+                                    <span class="stars-wrapper">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i>
+                                    </span>
+                                </label>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#panelPrice" aria-expanded="true">
-                                Price range
-                            </button>
-                        </h2>
-                        <div id="panelPrice" class="accordion-collapse collapse show">
-                            <div class="accordion-body pt-1">
-                                <div class="range-slider-container position-relative mb-3">
-                                    <div class="slider-track-highlight"></div>
-                                    <input type="range" class="exact-range-thumb min-thumb" min="0" max="999999"
-                                        value="15000">
-                                    <input type="range" class="exact-range-thumb max-thumb" min="0" max="999999"
-                                        value="700000">
-                                </div>
-                                <div class="row g-2 pricing-numeric-inputs-row mb-3">
-                                    <div class="col-6">
-                                        <label class="form-label">Min</label>
-                                        <input type="number" class="form-control" value="0" placeholder="0">
-                                    </div>
-                                    <div class="col-6">
-                                        <label class="form-label">Max</label>
-                                        <input type="number" class="form-control" value="999999" placeholder="999999">
-                                    </div>
-                                </div>
-                                <button class="btn btn-sidebar-apply w-100" type="button">Apply</button>
+                            <div class="form-check d-flex align-items-center">
+                                <input class="form-check-input filter-checkbox" type="checkbox" id="rate4"
+                                    value="4 star" onchange="handleCheckboxChange(this)">
+                                <label class="form-check-label d-flex align-items-center" for="rate4">
+                                    <span class="stars-wrapper">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star star-muted"></i>
+                                    </span>
+                                </label>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#panelCondition" aria-expanded="true">
-                                Condition
-                            </button>
-                        </h2>
-                        <div id="panelCondition" class="accordion-collapse collapse show">
-                            <div class="accordion-body pt-1">
-                                <div class="form-check custom-sidebar-radio"><input class="form-check-input"
-                                        type="radio" name="conditionGroup" id="condAny" checked><label
-                                        class="form-check-label" for="condAny">Any</label></div>
-                                <div class="form-check custom-sidebar-radio"><input class="form-check-input"
-                                        type="radio" name="conditionGroup" id="condRefurbished"><label
-                                        class="form-check-label" for="condRefurbished">Refurbished</label></div>
-                                <div class="form-check custom-sidebar-radio"><input class="form-check-input"
-                                        type="radio" name="conditionGroup" id="condBrandNew"><label
-                                        class="form-check-label" for="condBrandNew">Brand new</label></div>
-                                <div class="form-check custom-sidebar-radio"><input class="form-check-input"
-                                        type="radio" name="conditionGroup" id="condOld"><label class="form-check-label"
-                                        for="condOld">Old items</label></div>
+                            <div class="form-check d-flex align-items-center">
+                                <input class="form-check-input filter-checkbox" type="checkbox" id="rate3"
+                                    value="3 star" onchange="handleCheckboxChange(this)">
+                                <label class="form-check-label d-flex align-items-center" for="rate3">
+                                    <span class="stars-wrapper">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star star-muted"></i><i
+                                            class="fa-solid fa-star star-muted"></i>
+                                    </span>
+                                </label>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#panelRatings" aria-expanded="true">
-                                Ratings
-                            </button>
-                        </h2>
-                        <div id="panelRatings" class="accordion-collapse collapse show">
-                            <div class="accordion-body pt-1 pb-2">
-                                <div class="form-check custom-sidebar-check star-row mb-2">
-                                    <input class="form-check-input" type="checkbox" id="rate5">
-                                    <label class="form-check-label" for="rate5">
-                                        <i class="bi bi-star-fill text-warning"></i><i
-                                            class="bi bi-star-fill text-warning"></i><i
-                                            class="bi bi-star-fill text-warning"></i><i
-                                            class="bi bi-star-fill text-warning"></i><i
-                                            class="bi bi-star-fill text-warning"></i>
-                                    </label>
-                                </div>
-                                <div class="form-check custom-sidebar-check star-row mb-2">
-                                    <input class="form-check-input" type="checkbox" id="rate4">
-                                    <label class="form-check-label" for="rate4">
-                                        <i class="bi bi-star-fill text-warning"></i><i
-                                            class="bi bi-star-fill text-warning"></i><i
-                                            class="bi bi-star-fill text-warning"></i><i
-                                            class="bi bi-star-fill text-warning"></i><i
-                                            class="bi bi-star text-muted-star"></i>
-                                    </label>
-                                </div>
-                                <div class="form-check custom-sidebar-check star-row mb-2">
-                                    <input class="form-check-input" type="checkbox" id="rate3">
-                                    <label class="form-check-label" for="rate3">
-                                        <i class="bi bi-star-fill text-warning"></i><i
-                                            class="bi bi-star-fill text-warning"></i><i
-                                            class="bi bi-star-fill text-warning"></i><i
-                                            class="bi bi-star text-muted-star"></i><i
-                                            class="bi bi-star text-muted-star"></i>
-                                    </label>
-                                </div>
-                                <div class="form-check custom-sidebar-check star-row mb-2">
-                                    <input class="form-check-input" type="checkbox" id="rate2">
-                                    <label class="form-check-label" for="rate2">
-                                        <i class="bi bi-star-fill text-warning"></i><i
-                                            class="bi bi-star-fill text-warning"></i><i
-                                            class="bi bi-star text-muted-star"></i><i
-                                            class="bi bi-star text-muted-star"></i><i
-                                            class="bi bi-star text-muted-star"></i>
-                                    </label>
-                                </div>
+                            <div class="form-check d-flex align-items-center">
+                                <input class="form-check-input filter-checkbox" type="checkbox" id="rate2"
+                                    value="2 star" onchange="handleCheckboxChange(this)">
+                                <label class="form-check-label d-flex align-items-center" for="rate2">
+                                    <span class="stars-wrapper">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star star-muted"></i><i
+                                            class="fa-solid fa-star star-muted"></i><i
+                                            class="fa-solid fa-star star-muted"></i>
+                                    </span>
+                                </label>
                             </div>
                         </div>
                     </div>
 
                 </div>
-
             </div>
 
-            <div class="col-lg-9 col-md-8 col-12">
-                <div class="coontainer my-5" style="max-width: 960px;">
+            <div class="col-lg-9 col-12">
 
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-dark font-weight-500" style="font-size: 16px;" id="totalItemsCounter">
-                            Loading products...
-                        </span>
-                    </div>
+                <div class="containe">
+                    <div class="main-container">
 
-                    <div id="dynamicProductsList"></div>
+                        <div class="top-filter-bar">
+                            <div class="item-count">
+                                12,819 items in <strong>Mobile accessory</strong>
+                            </div>
+                            <div class="right-controls">
+                                <label class="verified-checkbox">
+                                    <input type="checkbox" class="form-check-input m-0"> Verified only
+                                </label>
+                                <select class="sort-select">
+                                    <option>Featured</option>
+                                    <option>Price: Low to High</option>
+                                    <option>Price: High to Low</option>
+                                </select>
 
-                    <div class="mockup-pagination-wrapper">
-
-                        <div class="mockup-page-select-wrapper">
-                            <span>Show</span>
-                            <select class="form-select" id="itemsPerPageSelect">
-                                <option value="3">Show 3</option>
-                                <option value="5" selected>Show 5</option>
-                                <option value="10">Show 10</option>
-                            </select>
+                                <div class="view-btn-group">
+                                    <button class="view-btn active" id="btnGrid" onclick="switchView('grid')"
+                                        title="Grid View">
+                                        <i class="fa-solid fa-table-cells-large"></i>
+                                    </button>
+                                    <button class="view-btn" id="btnList" onclick="switchView('list')"
+                                        title="List View">
+                                        <i class="fa-solid fa-bars"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
 
-                        <ul class="mockup-pagination-nav" id="paginationNav"></ul>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="filter-badges-wrapper" id="badgesContainer" style="display: none;">
+                                    <a class="clear-all-btn" id="clearAllBtn" onclick="clearAllFilters()">Clear all
+                                        filter</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="product-wrapper grid-view" id="productContainer">
+                        </div>
+
+                        <div class="pagination-wrapper">
+                            <div>
+                                Show
+                                <select class="page-select" id="itemsPerPage" onchange="changeItemsPerPage()">
+                                    <option value="5">5</option>
+                                    <option value="10" selected>10</option>
+                                    <option value="15">15</option>
+                                </select>
+                            </div>
+                            <ul class="custom-pagination" id="paginationNav">
+                            </ul>
+                        </div>
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
 
 
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>100% Exact Product Listing with Pagination</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-    
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
 
-        /* ==========================================================================
-           1. 100% EXACT PRODUCT CARD STYLES (AS PER MOCKUP)
-           ========================================================================== */
-        .mockup-product-card {
-            background: #ffffff;
-            border: 1px solid #e3e8ee;
-            border-radius: 6px;
-            padding: 20px;
-            margin-bottom: 16px;
-            display: flex;
-            position: relative;
-            transition: box-shadow 0.2s ease;
-        }
+    <!-- UNIQUE SCROLLED PORTION - AUTOMATICALLY HIDDEN ON DESKTOP -->
+    <div class="mob-exclusive-ysl-section">
 
-        .mockup-product-card:hover {
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
-        }
+        <!-- Heading from image_871a49.png -->
+        <div class="mob-exclusive-ysl-heading">You may also like</div>
 
-        /* Image Frame Section */
-        .card-img-wrapper {
-            width: 210px;
-            height: 210px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            background: #ffffff;
-            margin-right: 20px;
-        }
+        <!-- Left to Right Swipe Track Container -->
+        <div class="mob-exclusive-ysl-swipe-track">
 
-        .card-img-wrapper img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
+            <!-- Product Card 1 -->
+            <div class="mob-exclusive-ysl-card">
+                <a href="product-detail.html">
+                    <div class="mob-exclusive-ysl-img-box">
+                        <img src="images/cloths/2 1.png" alt="Backpack">
+                    </div>
+                    <div class="mob-exclusive-ysl-price">$10.30</div>
+                    <div class="mob-exclusive-ysl-details">Solid Backpack blue jeans large size</div>
+                </a>
+            </div>
 
-        /* Content Area Section */
-        .card-info-content {
-            flex-grow: 1;
-        }
+            <!-- Product Card 2 -->
+            <div class="mob-exclusive-ysl-card">
+                <a href="product-detail.html">
+                    <div class="mob-exclusive-ysl-img-box">
+                        <img src="images/cloths/Bitmap (2).png" alt="Smartwatch">
+                    </div>
+                    <div class="mob-exclusive-ysl-price">$10.30</div>
+                    <div class="mob-exclusive-ysl-details">T-shirts with multiple colors, for men</div>
+                </a>
+            </div>
 
-        .product-main-title {
-            font-size: 16px;
-            font-weight: 500;
-            color: #1c1c1c;
-            text-decoration: none;
-            line-height: 1.4;
-            margin-bottom: 6px;
-            display: block;
-        }
+            <!-- Product Card 3 -->
+            <div class="mob-exclusive-ysl-card">
+                <a href="product-detail.html">
+                    <div class="mob-exclusive-ysl-img-box">
+                        <img src="images/cloths/Bitmap.png" alt="Red Shoes">
+                    </div>
+                    <div class="mob-exclusive-ysl-price">$10.30</div>
+                    <div class="mob-exclusive-ysl-details">Sport athletic running shoes neon crimson</div>
+                </a>
+            </div>
 
-        .product-main-title:hover {
-            color: #0d6efd;
-        }
+            <!-- Product Card 4 -->
+            <div class="mob-exclusive-ysl-card">
+                <a href="product-detail.html">
+                    <div class="mob-exclusive-ysl-img-box">
+                        <img src="images/cloths/image 24.png" alt="White Gadget">
+                    </div>
+                    <div class="mob-exclusive-ysl-price">$14.50</div>
+                    <div class="mob-exclusive-ysl-details">Minimalist premium white smart watch device</div>
+                </a>
+            </div>
 
-        /* Pricing Area */
-        .price-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 6px;
-        }
+            <!-- Product Card 5 -->
+            <div class="mob-exclusive-ysl-card">
+                <a href="product-detail.html">
+                    <div class="mob-exclusive-ysl-img-box">
+                        <img src="images/cloths/image 26.png" alt="Headphones">
+                    </div>
+                    <div class="mob-exclusive-ysl-price">$18.99</div>
+                    <div class="mob-exclusive-ysl-details">Classic deep bass studio wire headphones</div>
+                </a>
+            </div>
 
-        .current-price {
-            font-size: 20px;
-            font-weight: 600;
-            color: #1c1c1c;
-        }
+            <!-- Product Card 6 -->
+            <div class="mob-exclusive-ysl-card">
+                <a href="product-detail.html">
+                    <div class="mob-exclusive-ysl-img-box">
+                        <img src="images/cloths/image 30.png" alt="Tshirt Pack">
+                    </div>
+                    <div class="mob-exclusive-ysl-price">$12.40</div>
+                    <div class="mob-exclusive-ysl-details">Premium organic summer cotton tee pack</div>
+                </a>
+            </div>
 
-        .old-price {
-            font-size: 16px;
-            color: #a2a6b0;
-            text-decoration: line-through;
-        }
+            <!-- Product Card 7 -->
+            <div class="mob-exclusive-ysl-card">
+                <a href="product-detail.html">
+                    <div class="mob-exclusive-ysl-img-box">
+                        <img src="images/interior/1.png" alt="Sunglasses">
+                    </div>
+                    <div class="mob-exclusive-ysl-price">$09.99</div>
+                    <div class="mob-exclusive-ysl-details">Dark aviator stylish fashion sunglasses</div>
+                </a>
+            </div>
 
-        /* Ratings and Meta Row */
-        .meta-rating-row {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-
-        .stars-indicator {
-            color: #ff9017; /* Exact orange/yellow rating color */
-        }
-
-        .rating-value {
-            color: #ff9017;
-            font-weight: 500;
-        }
-
-        .dot-separator {
-            color: #cbd5e1;
-        }
-
-        .orders-count {
-            color: #8b96a5;
-        }
-
-        .shipping-tag {
-            color: #00b517; /* Exact Green Shipping tag */
-            font-weight: 500;
-        }
-
-        /* Description Paragraph text */
-        .product-desc-text {
-            font-size: 15px;
-            color: #505050;
-            line-height: 1.5;
-            margin-bottom: 12px;
-            max-width: 680px;
-        }
-
-        .view-details-link {
-            font-size: 15px;
-            color: #0d6efd;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .view-details-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Wishlist Heart Button Style */
-        .btn-wishlist-heart {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            border: 1px solid #e3e8ee;
-            background: #ffffff;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #0d6efd;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .btn-wishlist-heart:hover {
-            background-color: #f7f8fa;
-            border-color: #cbd5e1;
-        }
-
-        /* Responsive Breakpoint for Mobile layout switching */
-        @media (max-width: 768px) {
-            .mockup-product-card {
-                flex-direction: column;
-            }
-            .card-img-wrapper {
-                width: 100%;
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-            .btn-wishlist-heart {
-                top: auto;
-                bottom: 20px;
-            }
-        }
-
-        /* ==========================================================================
-           2. EXACT MOCKUP PAGINATION STYLING
-           ========================================================================== */
-        .mockup-pagination-wrapper {
-            background-color: #ffffff;
-            border: 1px solid #e3e8ee;
-            border-radius: 6px;
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 24px;
-        }
-
-        .mockup-page-select-wrapper {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            color: #1c1c1c;
-        }
-
-        .mockup-page-select-wrapper .form-select {
-            width: auto;
-            font-size: 14px;
-            color: #1c1c1c;
-            border: 1px solid #e3e8ee;
-            border-radius: 6px;
-            padding: 6px 36px 6px 12px;
-            background-color: #ffffff;
-            box-shadow: none !important;
-            cursor: pointer;
-            margin-left: 8px;
-        }
-
-        .mockup-pagination-nav {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            display: flex;
-            align-items: center;
-            border: 1px solid #e3e8ee;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-
-        .mockup-pagination-nav .page-item {
-            display: inline-block;
-            border-right: 1px solid #e3e8ee;
-        }
-
-        .mockup-pagination-nav .page-item:last-child {
-            border-right: none;
-        }
-
-        .mockup-pagination-nav .page-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 40px;
-            height: 38px;
-            padding: 0 14px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #1c1c1c;
-            text-decoration: none;
-            background: #ffffff;
-            border: none;
-        }
-
-        .mockup-pagination-nav .page-link:hover {
-            background-color: #f7f8fa;
-        }
-
-        .mockup-pagination-nav .page-item.active .page-link {
-            background-color: #e3e8ee !important;
-            color: #1c1c1c !important;
-            font-weight: 600;
-        }
-
-        .mockup-pagination-nav .page-item.disabled .page-link {
-            color: #a2a6b0 !important;
-            background-color: #ffffff !important;
-            pointer-events: none;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container my-5" style="max-width: 960px;">
-    
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-dark font-weight-500" style="font-size: 16px;" id="totalItemsCounter">
-            Loading products...
-        </span>
-    </div>
-
-    <div id="dynamicProductsList">
         </div>
-
-    <div class="mockup-pagination-wrapper">
-        
-        <div class="mockup-page-select-wrapper">
-            <span>Show</span>
-            <select class="form-select" id="itemsPerPageSelect">
-                <option value="3">Show 3</option>
-                <option value="5" selected>Show 5</option>
-                <option value="10">Show 10</option>
-            </select>
-        </div>
-
-        <ul class="mockup-pagination-nav" id="paginationNav">
-            </ul>
-
     </div>
-</div>
+
 
 
     <!-- subscribe -->
@@ -913,7 +745,8 @@
     </div>
 
 
-<script src="js/pagi.js"></script>
+    <script src="js/pagi.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

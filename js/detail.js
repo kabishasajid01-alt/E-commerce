@@ -48,3 +48,57 @@ function switchLayoutTab(clickedTab, targetPanelId) {
     clickedTab.classList.add('active-tab-state');
     document.getElementById(targetPanelId).classList.remove('d-none');
 }
+
+
+
+// countdown index page
+
+let countdownDate = new Date().getTime() + (4 * 24 * 60 * 60 * 1000);
+
+function updateCountdown() {
+
+    let now = new Date().getTime();
+    let distance = countdownDate - now;
+
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+    let hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) /
+        (1000 * 60 * 60)
+    );
+
+    let minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) /
+        (1000 * 60)
+    );
+
+    let seconds = Math.floor(
+        (distance % (1000 * 60)) / 1000
+    );
+
+    document.getElementById("days").innerHTML =
+        days.toString().padStart(2, "0");
+
+    document.getElementById("hours").innerHTML =
+        hours.toString().padStart(2, "0");
+
+    document.getElementById("minutes").innerHTML =
+        minutes.toString().padStart(2, "0");
+
+    document.getElementById("seconds").innerHTML =
+        seconds.toString().padStart(2, "0");
+
+    if (distance < 0) {
+
+        clearInterval(timer);
+
+        document.getElementById("days").innerHTML = "00";
+        document.getElementById("hours").innerHTML = "00";
+        document.getElementById("minutes").innerHTML = "00";
+        document.getElementById("seconds").innerHTML = "00";
+    }
+}
+
+updateCountdown();
+
+let timer = setInterval(updateCountdown, 1000);

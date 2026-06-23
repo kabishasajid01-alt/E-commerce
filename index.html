@@ -28,7 +28,7 @@
                 <!-- Left Identity Block: Hamburger Toggle (Mobile Only) & Brand Title -->
                 <div class="col-auto d-flex align-items-center gap-2">
                     <!-- Mobile Hamburger Menu Toggle -->
-                    <button class="btn btn-link text-dark p-0 d-md-none me-1" type="button" data-bs-toggle="offcanvas"
+                    <button class="btn btn-link text-dark p-0 d-md-none d-lg-none d-block me-1" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#mobileNavOffcanvas" aria-controls="mobileNavOffcanvas">
                         <i class="bi bi-list fs-2"></i>
                     </button>
@@ -122,10 +122,23 @@
                     <a href="#" class="sub-nav-link d-flex align-items-center gap-2">
                         <i class="bi bi-list fs-5"></i> All category
                     </a>
+                    <div class="dropdown">
+                        <button class="sub-nav-link dropdown-toggle" type="button" id="helpDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Pages
+                        </button>
+                        <ul class="dropdown-menu shadow-sm mt-2" aria-labelledby="helpDropdown">
+                            <li><a class="dropdown-item" href="list.html">All Products</a></li>
+                            <li><a class="dropdown-item" href="product-detail.html">Product Detail</a></li>
+                            <li><a class="dropdown-item" href="cart.html">Cart</a></li>
+                        </ul>
+                    </div>
                     <a href="#" class="sub-nav-link">Hot offers</a>
                     <a href="#" class="sub-nav-link">Gift boxes</a>
                     <a href="#" class="sub-nav-link">Projects</a>
                     <a href="#" class="sub-nav-link">Menu item</a>
+
+
 
                     <!-- Fixed Interactive Help Dropdown Menu -->
                     <div class="dropdown">
@@ -181,29 +194,116 @@
 
     <!-- MOBILE NAVIGATION SIDEBAR OFFCANVAS (Triggered via mobile hamburger click) -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileNavOffcanvas"
-        aria-labelledby="mobileNavOffcanvasLabel">
-        <div class="offcanvas-header border-bottom">
-            <h5 class="offcanvas-title text-primary fw-bold" id="mobileNavOffcanvasLabel">Navigation Menu</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body p-0">
-            <div class="list-group list-group-flush">
-                <a href="list.html" class="list-group-item list-group-item-action py-3"><i
-                        class="bi bi-list me-3"></i>All
-                    category</a>
-                <a href="#" class="list-group-item list-group-item-action py-3"><i class="bi bi-percent me-3"></i>Hot
-                    offers</a>
-                <a href="#" class="list-group-item list-group-item-action py-3"><i class="bi bi-box-seam me-3"></i>Gift
-                    boxes</a>
-                <a href="#" class="list-group-item list-group-item-action py-3"><i
-                        class="bi bi-folder me-3"></i>Projects</a>
-                <a href="#" class="list-group-item list-group-item-action py-3"><i
-                        class="bi bi-link-45deg me-3"></i>Menu item</a>
-                <a href="#" class="list-group-item list-group-item-action py-3"><i
-                        class="bi bi-question-circle me-3"></i>Help Center</a>
+        aria-labelledby="mobileNavOffcanvasLabel" style="width: 280px;">
+
+        <div class="offcanvas-header bg-light d-flex flex-column align-items-start position-relative py-3 px-3">
+            <button type="button" class="btn-close position-absolute top-0 end-0 m-3 fs-6" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+
+            <div class="rounded-circle bg-secondary bg-opacity-25 d-flex align-items-center justify-content-center mb-2"
+                style="width: 50px; height: 50px;">
+                <i class="bi bi-person-fill text-secondary fs-3"></i>
+            </div>
+            <div class="fw-normal text-dark">
+                <a href="#" class="text-decoration-none text-dark">Sign in</a>
+                <span class="text-muted mx-1">|</span>
+                <a href="#" class="text-decoration-none text-dark">Register</a>
             </div>
         </div>
 
+        <div class="offcanvas-body p-0">
+            <div class="list-group list-group-flush">
+
+                <a href="#"
+                    class="list-group-item list-group-item-action border-0 py-2 px-3 text-secondary d-flex align-items-center">
+                    <i class="bi bi-house-door me-3 fs-5"></i> Home
+                </a>
+
+                <div class="border-0">
+                    <button
+                        class="list-group-item list-group-item-action border-0 py-2 px-3 text-secondary d-flex align-items-center justify-content-between"
+                        data-bs-toggle="collapse" data-bs-target="#categoriesCollapse" aria-expanded="false">
+                        <span class="d-flex align-items-center">
+                            <i class="bi bi-list me-3 fs-5"></i> Categories
+                        </span>
+                        <i class="bi bi-chevron-down small text-muted"></i>
+                    </button>
+                    <div class="collapse bg-light" id="categoriesCollapse">
+                        <a href="#"
+                            class="list-group-item list-group-item-action border-0 py-2 ps-5 text-secondary">Clothes</a>
+                        <a href="#"
+                            class="list-group-item list-group-item-action border-0 py-2 ps-5 text-secondary">Electronics</a>
+                        <a href="#"
+                            class="list-group-item list-group-item-action border-0 py-2 ps-5 text-secondary">Home &
+                            Kitchen</a>
+                    </div>
+                </div>
+
+                <a href="#"
+                    class="list-group-item list-group-item-action border-0 py-2 px-3 text-secondary d-flex align-items-center">
+                    <i class="bi bi-heart me-3 fs-5"></i> Favorites
+                </a>
+
+                <a href="#"
+                    class="list-group-item list-group-item-action border-0 py-2 px-3 text-secondary d-flex align-items-center">
+                    <i class="bi bi-box-seam me-3 fs-5"></i> My orders
+                </a>
+
+                <hr class="text-muted my-2 opacity-25">
+
+                <a href="#"
+                    class="list-group-item list-group-item-action border-0 py-2 px-3 text-secondary d-flex align-items-center">
+                    <i class="bi bi-globe me-3 fs-5"></i> English | USD
+                </a>
+
+                <a href="#"
+                    class="list-group-item list-group-item-action border-0 py-2 px-3 text-secondary d-flex align-items-center">
+                    <i class="bi bi-headset me-3 fs-5"></i> Contact us
+                </a>
+
+                <a href="#"
+                    class="list-group-item list-group-item-action border-0 py-2 px-3 text-secondary d-flex align-items-center">
+                    <i class="bi bi-building me-3 fs-5"></i> About
+                </a>
+
+                <div class="border-0">
+                    <button
+                        class="list-group-item list-group-item-action border-0 py-2 px-3 text-secondary d-flex align-items-center justify-content-between"
+                        data-bs-toggle="collapse" data-bs-target="#categoriesCollapse" aria-expanded="false">
+                        <span class="d-flex align-items-center">
+                            <i class="bi bi-list me-3 fs-5"></i> Pages
+                        </span>
+                        <i class="bi bi-chevron-down small text-muted"></i>
+                    </button>
+                    <div class="collapse bg-light" id="categoriesCollapse">
+                        <a href="list.html"
+                            class="list-group-item list-group-item-action border-0 py-2 ps-5 text-secondary">All Product</a>
+                        <a href="product-detail.html"
+                            class="list-group-item list-group-item-action border-0 py-2 ps-5 text-secondary">Details</a>
+                        <a href="cart.html"
+                            class="list-group-item list-group-item-action border-0 py-2 ps-5 text-secondary">Cart</a>
+                    </div>
+                </div>
+
+                <hr class="text-muted my-2 opacity-25">
+
+                <a href="#"
+                    class="list-group-item list-group-item-action border-0 py-2 px-3 ps-5 text-secondary fw-normal">
+                    User agreement
+                </a>
+
+                <a href="#"
+                    class="list-group-item list-group-item-action border-0 py-2 px-3 ps-5 text-secondary fw-normal">
+                    Partnership
+                </a>
+
+                <a href="#"
+                    class="list-group-item list-group-item-action border-0 py-2 px-3 ps-5 text-secondary fw-normal">
+                    Privacy policy
+                </a>
+
+            </div>
+        </div>
     </div>
 
 

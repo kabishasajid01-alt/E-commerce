@@ -29,14 +29,14 @@
                 <!-- Left Identity Block: Hamburger Toggle (Mobile Only) & Brand Title -->
                 <div class="col-auto d-flex align-items-center gap-2">
                     <!-- Mobile Hamburger Menu Toggle -->
-                    <button class="btn btn-link text-dark p-0 d-md-none me-1" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#mobileNavOffcanvas" aria-controls="mobileNavOffcanvas">
-                        <i class="bi bi-list fs-2"></i>
-                    </button>
 
-                    <a href="index.html" class="brand-logo">
+                    <a href="index.html" class="brand-logo d-none d-lg-block">
                         <!-- Custom Vector/Icon Mimicking Image Logo -->
                         <img src="images/brand/logo-colored.png" alt="logo">
+                    </a>
+                    <a href="index.html" class="brand-logo d-block d-lg-none" style="text-decoration: none; font-size: 20px; font-weight: 700; color: black;">
+                        <!-- Custom Vector/Icon Mimicking Image Logo -->
+                        <i class="fa-solid fa-arrow-left pe-3"></i>Mobile accessory
                     </a>
                 </div>
 
@@ -123,6 +123,17 @@
                     <a href="#" class="sub-nav-link d-flex align-items-center gap-2">
                         <i class="bi bi-list fs-5"></i> All category
                     </a>
+                    <div class="dropdown">
+                        <button class="sub-nav-link dropdown-toggle" type="button" id="helpDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                             Pages
+                        </button>
+                        <ul class="dropdown-menu shadow-sm mt-2" aria-labelledby="helpDropdown">
+                            <li><a class="dropdown-item" href="list.html">All Products</a></li>
+                            <li><a class="dropdown-item" href="product-detail.html">Product Detail</a></li>
+                            <li><a class="dropdown-item" href="cart.html">Cart</a></li>
+                        </ul>
+                    </div>
                     <a href="#" class="sub-nav-link">Hot offers</a>
                     <a href="#" class="sub-nav-link">Gift boxes</a>
                     <a href="#" class="sub-nav-link">Projects</a>
@@ -201,6 +212,17 @@
                         class="bi bi-link-45deg me-3"></i>Menu item</a>
                 <a href="#" class="list-group-item list-group-item-action py-3"><i
                         class="bi bi-question-circle me-3"></i>Help Center</a>
+                <div class="dropdown">
+                    <button class="sub-nav-link dropdown-toggle" type="button" id="helpDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-list fs-5"></i> Pages
+                    </button>
+                    <ul class="dropdown-menu shadow-sm mt-2" aria-labelledby="helpDropdown">
+                        <li><a class="dropdown-item" href="list.html">All Products</a></li>
+                        <li><a class="dropdown-item" href="product-detail.html">Product Detail</a></li>
+                        <li><a class="dropdown-item" href="cart.html">Cart</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
